@@ -1,0 +1,36 @@
+<script src="socket.io/socket.io.js"></script>
+<script>
+    var socket = io().connect('http://localhost:3000');
+    var append = "";
+    function send(data){
+        socket.emit('put', data);
+        document.getElementById("sender").value = ""; //empty
+    };
+
+
+    socket.on('draw',function(data){
+        append+= '<br>'+data;
+        //document.getElementById('results').innerHTML=append;
+        drawData(data);
+    });
+
+    function drawData(data){
+        for(var i=0; i<data.length; i++){
+            console.warn("drawing");
+            var div = document.createElement("div");
+            var textinput = document.createElement("input");
+            textinput.type="text";
+            textinput.value=data[i].CreateIndex;
+            textinput.id=data[i].Value;
+            textinput.onchange="send(this.value)";
+
+            div.appendChild(textinput);
+            document.getElementById('results').appendChild(div);
+        }
+    }
+
+</script>
+
+
+
+<div id="results"></div>
