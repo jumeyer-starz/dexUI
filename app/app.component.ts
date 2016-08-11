@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-
+//import './rxjs-extensions';
 @Component({
     selector: 'my-app',
-    template: '<h1>test</h1>'
+    templateUrl: 'public/mainTemplate.html',
+    styleUrls: ['public/stylesheets/app.component.css']
 })
-export class AppComponent { }
+export class AppComponent {
+    title = 'angular2 dextroseUI';
+}

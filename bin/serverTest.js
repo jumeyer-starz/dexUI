@@ -11,8 +11,8 @@ var consul = require('consul')({
 console.log("consul connected");
 
 app.get('/',function(req,res){
-    //res.sendFile(__dirname+'/../public/index.html');
-    res.sendFile('index.html', { root: path.join(__dirname, '../public') });
+    //res.sendFile(__dirname+'/../public/tt_index.html');
+    res.sendFile('tt_index.html', { root: path.join(__dirname, '../public') });
 });
 
 var wtch = consul.watch({
@@ -20,7 +20,6 @@ var wtch = consul.watch({
     options: {
         key: "test\/",
         recurse: true
-
     }
 });
 var lastConsulData = {};
