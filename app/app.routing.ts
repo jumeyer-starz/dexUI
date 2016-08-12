@@ -9,13 +9,13 @@ import { SomethinComponent }  from './somethin.component';
 const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: '/redirects',
+        redirectTo: '/status',
         pathMatch: 'full'
     },{
         path: 'redirects',
         component: RedirectComponent
     },{
-        path: 'somethin',
+        path: 'status',
         component: SomethinComponent
     }
 ];

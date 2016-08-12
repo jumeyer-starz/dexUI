@@ -8,7 +8,6 @@ var consul = require('consul')({
     host:"ec2-54-204-84-154.compute-1.amazonaws.com",
     port:80
 });
-console.log("consul connected");
 
 app.get('/',function(req,res){
     //res.sendFile(__dirname+'/../public/tt_index.html');

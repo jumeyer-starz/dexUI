@@ -8,7 +8,15 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
+//var app = express();
+var app = express()
+    , server = require('http').createServer(app)
+    , io = io.listen(server);
+
+server.listen(80);
+
+
+//debug("HERE I GO AGAIN ON MY OWN");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
