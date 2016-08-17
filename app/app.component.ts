@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-//import './rxjs-extensions';
+import { RedirectManagerComponent } from  './redirect.manager.component';
+
+
 @Component({
     selector: 'my-app',
     templateUrl: 'public/mainTemplate.html',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title = 'angular2 dextroseUI';
+    // redirects: RedirectManagerComponent = {
+    // };
 }

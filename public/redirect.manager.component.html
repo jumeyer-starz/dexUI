@@ -1,0 +1,9 @@
+<h3>Redirects</h3>
+<div class="grid grid-pad">
+    <div *ngFor="let redirect of redirects" (click)="gotoDetail(redirect)" class="col-1-4">
+        <div class="module redirect">
+            <h4>{{redirect.name}}</h4>
+        </div>
+    </div>
+</div>
+<redirect-search></redirect-search>

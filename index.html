@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="public/stylesheets/style.css">
     <!-- 1. Load libraries -->
     <!-- Polyfill(s) for older browsers -->
+    <!--script src=":4000/socket.io/socket.io.js"></script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+
     <script src="node_modules/core-js/client/shim.min.js"></script>
     <script src="node_modules/zone.js/dist/zone.js"></script>
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
@@ -14,11 +17,51 @@
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
     <script>
-        System.import('app').catch(function(err){ console.error(err); });
+        System.import('app').catch(function(err){
+            console.error("generic justin error");
+            console.error(err);
+        });
     </script>
+
 </head>
 <!-- 3. Display the application -->
 <body>
 <my-app>Loading...</my-app>
 </body>
+<script>
+
+    //import io = require('socket.io').listen(4000);
+    var socket = io('http://localhost:4000');
+
+    var append = "";
+
+    function send(data) {
+        console.warn("send " + data);
+        socket.emit('put', data);
+        //document.getElementById("sender").value = ""; //empty
+    };
+
+    socket.on('draw', function (data) {
+        console.warn("draw " + data);
+        drawData(data);
+    });
+
+    function drawData(data){
+        for(var i=0; i<data.length; i++){
+            console.warn("drawing " + i );
+            /*
+            var div = document.createElement("div");
+            var textinput = document.createElement("input");
+            textinput.type="text";
+            textinput.value=data[i].CreateIndex;
+            textinput.id=data[i].Value;
+            textinput.onchange="send(this.value)";
+
+            div.appendChild(textinput);
+            document.getElementById('results').appendChild(div);
+            */
+        }
+    }
+
+</script>
 </html>

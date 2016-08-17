@@ -1,10 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { RedirectComponent }  from './redirect.component';
+import { RedirectManagerComponent }  from './redirect.manager.component';
 import { SomethinComponent }  from './somethin.component';
 
-//import { HeroesComponent }     from './heroes.component';
-//import { HeroDetailComponent } from './hero-detail.component';
 
 const appRoutes: Routes = [
     {
@@ -13,11 +11,12 @@ const appRoutes: Routes = [
         pathMatch: 'full'
     },{
         path: 'redirects',
-        component: RedirectComponent
+        component: RedirectManagerComponent
     },{
         path: 'status',
         component: SomethinComponent
     }
 ];
 
+export const appRoutingProviders: any[] = [];
 export const routing = RouterModule.forRoot(appRoutes);

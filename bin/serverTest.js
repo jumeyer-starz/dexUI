@@ -5,7 +5,8 @@ var path = require('path');
 console.log('Server Started!');
 
 var consul = require('consul')({
-    host:"ec2-54-204-84-154.compute-1.amazonaws.com",
+    host:"ec2-54-204-84-154.compute-1.amazonaws.com", //FIXME: dont hard code this
+    //host:"localhost", //FIXME: dont hard code this
     port:80
 });
 
@@ -17,11 +18,11 @@ app.get('/',function(req,res){
 var wtch = consul.watch({
     method: consul.kv.get,
     options: {
-        key: "test\/",
+        key: "redirects\/",
         recurse: true
     }
 });
-var lastConsulData = {};
+var lastConsulData = null;
 
 io.on('connection',function(socket){
     console.log('User Connected!');
@@ -38,7 +39,7 @@ io.on('connection',function(socket){
 
     //send initial chunk of data
     socket.emit('draw', lastConsulData);
-    console.log("send init data: "+lastConsulData);
+    console.log("send init data: " + lastConsulData);
 });
 
 var broadcast = function(msg){
