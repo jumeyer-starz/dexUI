@@ -1,0 +1,10 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+div.banner{
+  background-color: black;
+}
+
