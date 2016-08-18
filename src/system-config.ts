@@ -51,7 +51,14 @@ const materialPkgs:string[] = [
   'core',
   'button',
   'card',
-  'sidenav'
+  'sidenav',
+  'grid-list',
+  'input',
+  'toolbar',
+  'icon',
+  'list',
+  'radio',
+  'checkbox'
 ];
 materialPkgs.forEach((pkg) => {
   packages[`@angular2-material/${pkg}`] = {main: `${pkg}.js`};

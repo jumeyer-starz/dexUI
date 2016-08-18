@@ -1,0 +1,78 @@
+
+
+<div layout="column" style="height:500px;">
+  <md-sidenav-layout>
+
+    <md-sidenav #left (open)="mybutton.focus()" [opened]="true" mode="side" layout-padding>
+      <md-button md-raised-button class="md-raised md-primary" #mybutton (click)="left.close()">Redirects</md-button>
+      <br>
+      <button md-raised-button class="md-raised md-primary" #mybutton (click)="left.close()">[x]</button>
+    </md-sidenav>
+
+    <md-sidenav #right align="end" layout-padding>
+      <h2>Add Redirect</h2>
+
+      <form (submit)="addRedirect()">
+
+        <div class="form-group">
+          <label for="hostname">Server Hostname</label>
+          <input type="text" class="form-control" id="hostname" required ngModel="hostname">
+        </div>
+
+        <div class="form-group">
+          <label for="url">URL Path</label>
+          <input type="text" class="form-control" id="url" required>
+        </div>
+
+        <div class="form-group">
+          <label for="redirect">Redirect to</label>
+          <input type="text" class="form-control" id="redirect" required>
+        </div>
+
+      </form>
+
+      <button md-raised-button class="md-raised md-primary" (click)="right.close()">Cancel</button>
+      <button md-raised-button class="md-raised md-primary" (click)="right.close()" disabled>Add</button>
+    </md-sidenav>
+
+
+    <md-content layout-padding>
+      <p style="height:350px;">
+
+        <span *ngFor="let redirect of redirects">
+
+        <md-card>
+          <md-card-header>
+            <md-card-avatar>
+              <img src="http://{{redirect.hostname}}/favicon.ico"/>
+            </md-card-avatar>
+            <md-card-header-text>
+              <span class="md-title">{{redirect.hostname}}</span>
+              <span class="md-subhead">302 Redirect</span>
+            </md-card-header-text>
+          </md-card-header>
+
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{redirect.path}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            {{redirect.redirect}}
+            <div align="right">
+            {{redirect.created}} {{redirect.creadedBy}}
+            </div>
+          </md-card-content>
+      </md-card>
+
+      </span>
+
+      </p>
+      <md-divider></md-divider>
+      <button md-raised-button class="md-raised md-primary" (click)="left.toggle()">Navigation</button>
+      <button md-raised-button class="md-raised md-primary" (click)="right.toggle()">Add Redirect</button>
+    </md-content>
+  </md-sidenav-layout>
+</div>
+
+
