@@ -11,8 +11,7 @@ import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  directives: [RedirectManagerComponent
-  ]
+  directives: [RedirectManagerComponent]
 })
 export class AppComponent {
   title = 'jtfc!';

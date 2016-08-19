@@ -1,78 +1,20 @@
+<md-sidenav-layout>
+  <md-sidenav #left (open)="mybutton.focus()" [opened]="true" mode="side" layout-padding>
+    <h2>test a wide column handler</h2>
+    <br>
+    <button md-raised-button class="md-raised md-primary" #mybutton (click)="left.close()">Close</button>
+  </md-sidenav>
+  <md-sidenav #right align="end" layout-padding>
+    <h2>Right Sidenav.</h2>
+    <button md-raised-button class="md-raised md-primary" (click)="right.close()">x</button>
+  </md-sidenav>
+  <md-content layout-padding>
+    <p style="height:350px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      Why do we use it?
+      It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+    <md-divider></md-divider>
 
-
-<div layout="column" style="height:500px;">
-  <md-sidenav-layout>
-
-    <md-sidenav #left (open)="mybutton.focus()" [opened]="true" mode="side" layout-padding>
-      <md-button md-raised-button class="md-raised md-primary" #mybutton (click)="left.close()">Redirects</md-button>
-      <br>
-      <button md-raised-button class="md-raised md-primary" #mybutton (click)="left.close()">[x]</button>
-    </md-sidenav>
-
-    <md-sidenav #right align="end" layout-padding>
-      <h2>Add Redirect</h2>
-
-      <form (submit)="addRedirect()">
-
-        <div class="form-group">
-          <label for="hostname">Server Hostname</label>
-          <input type="text" class="form-control" id="hostname" required ngModel="hostname">
-        </div>
-
-        <div class="form-group">
-          <label for="url">URL Path</label>
-          <input type="text" class="form-control" id="url" required>
-        </div>
-
-        <div class="form-group">
-          <label for="redirect">Redirect to</label>
-          <input type="text" class="form-control" id="redirect" required>
-        </div>
-
-      </form>
-
-      <button md-raised-button class="md-raised md-primary" (click)="right.close()">Cancel</button>
-      <button md-raised-button class="md-raised md-primary" (click)="right.close()" disabled>Add</button>
-    </md-sidenav>
-
-
-    <md-content layout-padding>
-      <p style="height:350px;">
-
-        <span *ngFor="let redirect of redirects">
-
-        <md-card>
-          <md-card-header>
-            <md-card-avatar>
-              <img src="http://{{redirect.hostname}}/favicon.ico"/>
-            </md-card-avatar>
-            <md-card-header-text>
-              <span class="md-title">{{redirect.hostname}}</span>
-              <span class="md-subhead">302 Redirect</span>
-            </md-card-header-text>
-          </md-card-header>
-
-          <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline">{{redirect.path}}</span>
-            </md-card-title-text>
-          </md-card-title>
-          <md-card-content>
-            {{redirect.redirect}}
-            <div align="right">
-            {{redirect.created}} {{redirect.creadedBy}}
-            </div>
-          </md-card-content>
-      </md-card>
-
-      </span>
-
-      </p>
-      <md-divider></md-divider>
-      <button md-raised-button class="md-raised md-primary" (click)="left.toggle()">Navigation</button>
-      <button md-raised-button class="md-raised md-primary" (click)="right.toggle()">Add Redirect</button>
-    </md-content>
-  </md-sidenav-layout>
-</div>
-
+    <button md-raised-button class="md-raised md-primary" (click)="right.toggle()">Toggle Right Sidenav</button>
+  </md-content>
+</md-sidenav-layout>
 

@@ -41,7 +41,9 @@ const barrels: string[] = [
   /** @cli-barrel */
 ];
 
-const cliSystemConfigPackages: any = {};
+const cliSystemConfigPackages: any = { //https://github.com/angular/angular-cli/wiki/3rd-party-libs#adding-material2-to-your-project
+  '@angular2-material': 'vendor/@angular2-material'
+};
 barrels.forEach((barrelName: string) => {
   cliSystemConfigPackages[barrelName] = { main: 'index' };
 });
