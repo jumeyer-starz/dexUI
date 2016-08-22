@@ -71,7 +71,12 @@ export class RedirectManagerComponent implements OnInit {
 	@HostListener('window:resize')
   onResize(){
     if(window.innerWidth < 800){
-      
+      //left.close();
+      this.
 		}
+    if(window.innerWidth >= 800){
+
+      //this.left.open();
+    }
 	}
 };
