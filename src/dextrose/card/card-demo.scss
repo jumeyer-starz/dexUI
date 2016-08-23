@@ -4,7 +4,7 @@
 
   md-card {
     margin: 0 16px 16px 0;
-    width: 350px;
+    //width: 350px;
   }
 
   img {
@@ -19,4 +19,10 @@
     display: flex;
     flex-direction: column;
   }
+}
+
+.lastModified{
+  align:right;
+  display:inline;
+
 }

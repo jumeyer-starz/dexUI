@@ -11,10 +11,10 @@ export class Home {}
 
 @Component({
   moduleId: module.id,
-  selector: 'demo-app',
+  selector: 'dextrose-selector',
   providers: [],
-  templateUrl: 'demo-app.html',
-  styleUrls: ['demo-app.css'],
+  templateUrl: 'dextrose.html',
+  styleUrls: ['dextrose.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class DemoApp { }
+export class DextroseApp { }

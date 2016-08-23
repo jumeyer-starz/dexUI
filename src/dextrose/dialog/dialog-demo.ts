@@ -32,7 +32,7 @@ export class DialogDemo {
 
 
 @Component({
-  selector: 'demo-jazz-dialog',
+  selector: 'add-redirect-dialog',
   template: `
   <p>It's Jazz!</p>
   <p><label>How much? <input #howMuch></label></p>

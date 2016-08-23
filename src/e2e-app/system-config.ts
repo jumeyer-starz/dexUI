@@ -32,7 +32,7 @@ const packages: any = {
     format: 'cjs',
     defaultExtension: 'js'
   },
-  // Set the default extension for the root package, because otherwise the demo-app can't
+  // Set the default extension for the root package, because otherwise the dextrose can't
   // be built within the production mode. Due to missing file extensions.
   '.': {
     defaultExtension: 'js'
@@ -65,7 +65,7 @@ const barrels: string[] = [
   'rxjs',
 
   // App specific barrels.
-  'demo-app',
+  'dextrose',
   'button-toggle',
   'gestures',
   'live-announcer',

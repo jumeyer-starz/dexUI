@@ -2,8 +2,8 @@ import {NgModule, ApplicationRef} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
-import {DemoApp, Home} from './demo-app/demo-app';
-import {DEMO_APP_ROUTE_PROVIDER} from './demo-app/routes';
+import {DextroseApp, Home} from './dextrose/dextrose';
+import {DEMO_APP_ROUTE_PROVIDER} from './dextrose/routes';
 import {RouterModule} from '@angular/router';
 import {MaterialModule} from '@angular2-material/all/all';
 import {ProgressBarDemo} from './progress-bar/progress-bar-demo';
@@ -50,7 +50,7 @@ import {TabsDemo} from './tabs/tab-group-demo';
     ButtonToggleDemo,
     CardDemo,
     CheckboxDemo,
-    DemoApp,
+    DextroseApp,
     DialogDemo,
     GesturesDemo,
     GridListDemo,
@@ -79,7 +79,7 @@ import {TabsDemo} from './tabs/tab-group-demo';
     TooltipDemo,
   ],
   entryComponents: [
-    DemoApp,
+    DextroseApp,
     JazzDialog,
     RotiniPanel,
     ScienceJoke,
@@ -90,6 +90,6 @@ export class DemoAppModule {
   constructor(private _appRef: ApplicationRef) { }
 
   ngDoBootstrap() {
-    this._appRef.bootstrap(DemoApp);
+    this._appRef.bootstrap(DextroseApp);
   }
 }

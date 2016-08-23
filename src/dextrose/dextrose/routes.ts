@@ -1,5 +1,5 @@
 import {provideRouter, Routes} from '@angular/router';
-import {Home} from './demo-app';
+import {Home} from './dextrose';
 import {ButtonDemo} from '../button/button-demo';
 import {BaselineDemo} from '../baseline/baseline-demo';
 import {ButtonToggleDemo} from '../button-toggle/button-toggle-demo';
@@ -26,13 +26,15 @@ import {RippleDemo} from '../ripple/ripple-demo';
 import {DialogDemo} from '../dialog/dialog-demo';
 import {TooltipDemo} from '../tooltip/tooltip-demo';
 
+import {RedirectManager} from '../redirect-manager/redirect-manager';
+
 
 export const routes: Routes = [
 
 
   {path: '', component: CardDemo},
   {path: 'home', component: CardDemo},
-  {path: 'redirects', component: PortalDemo}
+  {path: 'redirects', component: RedirectManager}
   // {path: 'button', component: ButtonDemo},
   // {path: 'card', component: CardDemo},
   // {path: 'radio', component: RadioDemo},

@@ -8,7 +8,7 @@ import {
 } from '../task_helpers';
 
 
-const appDir = path.join(SOURCE_ROOT, 'demo-app');
+const appDir = path.join(SOURCE_ROOT, 'dextrose');
 const outDir = DIST_ROOT;
 
 

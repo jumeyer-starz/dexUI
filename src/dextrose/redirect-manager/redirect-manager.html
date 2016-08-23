@@ -1,0 +1,59 @@
+<div class="redirect-manager-container">
+    <button md-mini-fab style="position:absolute; right:10px;">
+        <md-icon class="md-24">add_to_queue</md-icon>
+    </button>
+    <md-tab-group class="demo-tab-group">
+        <md-tab *ngFor="let tab of asyncTabs | async; let a=index; trackBy:customTrackBy;">
+            <template md-tab-label>{{tab.server}}</template>
+            <template md-tab-content>
+                <md-card *ngFor="let redirect of tab.redirects; let i=index; trackBy:customTrackBy" >
+                    <md-card-header style="width: 250px;">
+                        <md-card-title>{{redirect.path}}</md-card-title>
+                        <md-card-subtitle>{{redirect.url}}</md-card-subtitle>
+                    </md-card-header>
+                    <md-card-content>
+                        <div class="testList">
+                            <h2>Tests
+                                <button md-mini-fab>
+                                <md-icon>add</md-icon>
+                                </button>
+                            </h2>
+                            <md-nav-list>
+                                <md-list-item *ngFor="let test of redirect.tests; let t=index; trackBy:customTrackBy">
+                                    <a md-line>{{ test.path }}</a>
+                                    <button md-icon-button >
+                                        <md-icon>{{test.status ? 'check' : 'error'}}</md-icon>
+                                    </button>
+                                </md-list-item>
+                            </md-nav-list>
+                        </div>
+                        <div class="lastModified">
+                            Last Modified:{{redirect.modifiedOn}}
+                            <md-slide-toggle [(ngModel)]="redirect.enabledTest" >
+                                Enabled in Test
+                            </md-slide-toggle>
+
+                            <md-slide-toggle [(ngModel)]="redirect.enabledProd" >
+                                Enabled in Production
+                            </md-slide-toggle>
+
+                            <p>Created by: {{redirect.createdBy}}</p>
+                            <p>On: {{redirect.createdOn}}</p>
+                        </div>
+
+                    </md-card-content>
+                </md-card>
+                <div style="text-align:center">
+                    <button md-fab (click)="open()" [disabled]="dialogRef">
+                        <md-icon class="md-24">add</md-icon>
+                    </button>
+                </div>
+                <br><md-input placeholder="Redirects for {{tab.server}}" [(ngModel)]="tab.server"></md-input>
+            </template>
+        </md-tab>
+    </md-tab-group>
+
+
+
+
+</div>
