@@ -7,7 +7,7 @@ import {DEMO_APP_ROUTE_PROVIDER} from './dextrose/routes';
 import {RouterModule} from '@angular/router';
 import {MaterialModule} from '@angular2-material/all/all';
 import {ProgressBarDemo} from './progress-bar/progress-bar-demo';
-import {JazzDialog, DialogDemo} from './dialog/dialog-demo';
+//import {JazzDialog, DialogDemo} from './dialog/dialog-demo';
 import {RippleDemo} from './ripple/ripple-demo';
 import {IconDemo} from './icon/icon-demo';
 import {GesturesDemo} from './gestures/gestures-demo';
@@ -31,6 +31,7 @@ import {SidenavDemo} from './sidenav/sidenav-demo';
 import {PortalDemo, ScienceJoke} from './portal/portal-demo';
 import {MenuDemo} from './menu/menu-demo';
 import {TabsDemo} from './tabs/tab-group-demo';
+import {RedirectManager, HostDialog, RedirectHostName, Redirect} from './redirect-manager/redirect-manager';
 
 
 @NgModule({
@@ -51,13 +52,14 @@ import {TabsDemo} from './tabs/tab-group-demo';
     CardDemo,
     CheckboxDemo,
     DextroseApp,
-    DialogDemo,
+    // DialogDemo,
     GesturesDemo,
     GridListDemo,
     Home,
     IconDemo,
     InputDemo,
-    JazzDialog,
+    // JazzDialog,
+    RedirectManager, HostDialog, Redirect, RedirectHostName,
     ListDemo,
     LiveAnnouncerDemo,
     MdCheckboxDemoNestedChecklist,
@@ -80,10 +82,11 @@ import {TabsDemo} from './tabs/tab-group-demo';
   ],
   entryComponents: [
     DextroseApp,
-    JazzDialog,
+    // JazzDialog,
+    HostDialog,
     RotiniPanel,
     ScienceJoke,
-    SpagettiPanel,
+    SpagettiPanel
   ],
 })
 export class DemoAppModule {

@@ -1,6 +1,8 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewContainerRef, ViewEncapsulation} from '@angular/core';
 import {AsyncPipe} from '@angular/common';
 import {Observable} from 'rxjs/Observable';
+import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular2-material/dialog/dialog';
+import {OVERLAY_PROVIDERS} from '@angular2-material/core/overlay/overlay';
 
 
 @Component({
@@ -9,13 +11,36 @@ import {Observable} from 'rxjs/Observable';
     templateUrl: 'redirect-manager.html',
     pipes: [AsyncPipe],
     styleUrls: ['redirect-manager.css'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    providers: [MdDialog, OVERLAY_PROVIDERS]
 })
 
+export class URLTestResult{
+    path:string;
+    status:number;
+}
+
+export class Redirect{
+    path:string;
+    uuid:string;
+    url:string;
+    createdBy: string;
+    createdOn: string;
+    modifiedOn: string;
+}
+export class RedirectHostName{
+    server: string;
+    redirects: Redirect[];
+
+    constructor(s:string){
+        this.server = s;
+    }
+}
 
 
 export class RedirectManager {
-    hosts = [
+    hosts: RedirectHostName[];
+    d : any=     [
         {
             server: 'www.starz.com',
             redirects:[
@@ -119,64 +144,53 @@ export class RedirectManager {
         }
     ];
 
+
+    public addHost(){
+        let config = new MdDialogConfig();
+        config.viewContainerRef = this.viewContainerRef;
+        // this.dialogRef = this.dialog.open(HostDialog, config).afterClosed().subscribe(result => {
+        //     this.lastCloseResult = result;
+        //     this.dialogRef = null;
+        //
+        //     console.warn("dude here");
+        //     console.warn(this.lastCloseResult);
+        //     console.warn(this.dialogRef);
+        //     this.hosts.push(new RedirectHostName(this.lastCloseResult));
+        // });
+    }
+
     asyncTabs: Observable<any>;
 
-    constructor() {
+    //dialog vars
+    dialogRef: MdDialogRef<HostDialog>;
+    private lastCloseResult: string;
+    constructor(
+        public dialog: MdDialog,
+        public viewContainerRef: ViewContainerRef
+    ) {
         this.asyncTabs = Observable.create((observer: any) => {
             setTimeout(() => {
                 observer.next(this.hosts);
                 console.warn(this.hosts);
             }, 500);
         });
+
+
     }
 }
 
 
-///////////////////////////////// dialog below ////
-
-
-
-
-import {ViewContainerRef} from '@angular/core';
-import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular2-material/dialog/dialog';
-import {OVERLAY_PROVIDERS} from '@angular2-material/core/overlay/overlay';
 
 @Component({
-    moduleId: module.id,
-    selector: 'dialog-demo',
-    templateUrl: 'dialog-demo.html',
-    styleUrls: ['dialog-demo.css'],
-    providers: [MdDialog, OVERLAY_PROVIDERS]
-})
-export class DialogDemo {
-    dialogRef: MdDialogRef<JazzDialog>;
-    lastCloseResult: string;
-
-    constructor(
-        public dialog: MdDialog,
-        public viewContainerRef: ViewContainerRef) { }
-
-    open() {
-        let config = new MdDialogConfig();
-        config.viewContainerRef = this.viewContainerRef;
-
-        this.dialogRef = this.dialog.open(JazzDialog, config);
-
-        this.dialogRef.afterClosed().subscribe(result => {
-            this.lastCloseResult = result;
-            this.dialogRef = null;
-        });
-    }
-}
-
-@Component({
-    selector: 'add-redirect-dialog',
+    selector: 'host-dialog',
     template: `
-  <p>It's Jazz!</p>
-  <p><label>How much? <input #howMuch></label></p>
-  <button type="button" (click)="dialogRef.close(howMuch.value)">Close dialog</button>`
+  <p>Enter New Hostname</p>
+  <p><label>Enter Hostname<input #howMuch></label></p>
+  
+  <button type="button" (click)="dialogRef.close()"><md-icon md-fab  class="md-24">close</md-icon></button>
+  <button type="button" (click)="dialogRef.close(howMuch.value)"><md-icon md-fab class="md-24">check</md-icon></button>`
 })
-export class JazzDialog {
-    constructor(public dialogRef: MdDialogRef<JazzDialog>) { }
+export class HostDialog {
+    constructor(public dialogRef: MdDialogRef<HostDialog>) { }
 }
 

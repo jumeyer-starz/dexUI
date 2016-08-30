@@ -26,7 +26,7 @@ import {RippleDemo} from '../ripple/ripple-demo';
 import {DialogDemo} from '../dialog/dialog-demo';
 import {TooltipDemo} from '../tooltip/tooltip-demo';
 
-import {RedirectManager} from '../redirect-manager/redirect-manager';
+import {RedirectManager, RedirectHostName, Redirect, HostDialog} from '../redirect-manager/redirect-manager';
 
 
 export const routes: Routes = [
