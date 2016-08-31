@@ -3,6 +3,7 @@ import {AsyncPipe} from '@angular/common';
 import {Observable} from 'rxjs/Observable';
 import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular2-material/dialog/dialog';
 import {OVERLAY_PROVIDERS} from '@angular2-material/core/overlay/overlay';
+//import {MaterialModule} from '@angular2-material/all/all';
 
 import { Redirect, RedirectHostName, URLTest } from 'redirect-base/redirect-base'
 
@@ -16,15 +17,7 @@ import { Redirect, RedirectHostName, URLTest } from 'redirect-base/redirect-base
     providers: [MdDialog, OVERLAY_PROVIDERS]
 })
 
-// ///
-// let config = new MdDialogConfig();
-// config.viewContainerRef = this.viewContainerRef;
-// this.dialogRef = this.dialog.open(JazzDialog, config);
-// this.dialogRef.afterClosed().subscribe(result => {
-//     this.lastCloseResult = result;
-//     this.dialogRef = null;
-// });
-// ///
+
 export class RedirectManager {
     hosts:RedirectHostName[]=[];
     dialogRef: MdDialogRef<HostDialog>;
@@ -39,18 +32,16 @@ export class RedirectManager {
         config.viewContainerRef = this.viewContainerRef;
         this.dialogRef = this.dialog.open(HostDialog, config);
 
-        // this.dialogRef.afterClosed().subscribe(result => {
-        //     this.lastCloseResult = result;
-        //     this.dialogRef = null;
-        //
-        //     console.warn("dude here");
-        //     console.warn(this.lastCloseResult);
-        //     console.warn(this.dialogRef);
-        //     this.hosts.push(new RedirectHostName(this.lastCloseResult));
-        // });
+        this.dialogRef.afterClosed().subscribe(result => {
+            this.lastCloseResult = result;
+            this.dialogRef = null;
+
+            console.warn("dude here");
+            console.warn(this.lastCloseResult);
+            console.warn(this.dialogRef);
+            this.hosts.push(new RedirectHostName(this.lastCloseResult));
+        });
     }
-
-
 
     constructor(
         public dialog: MdDialog,
@@ -74,13 +65,9 @@ export class RedirectManager {
             setTimeout(() => {
                 console.warn("hosts" );
                 console.warn(this.hosts);
-
                 observer.next(this.hosts);
-
             }, 500);
         });
-
-
     }
 }
 
@@ -88,11 +75,13 @@ export class RedirectManager {
 
 @Component({
     selector: 'host-dialog',
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: ['redirect-manager.css'],
     template: `
   <p>Enter New Hostname</p>
   <p><label>Enter Hostname<input #howMuch></label></p>
 
-  <button type="button" (click)="dialogRef.close()"><md-icon md-fab  class="md-24">close</md-icon></button>
+  <button type="button" (click)="dialogRef.close()"><md-icon md-fab class="md-24">close</md-icon></button>
   <button type="button" (click)="dialogRef.close(howMuch.value)"><md-icon md-fab class="md-24">check</md-icon></button>`
 })
 export class HostDialog {
