@@ -4,6 +4,8 @@ import {Observable} from 'rxjs/Observable';
 import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular2-material/dialog/dialog';
 import {OVERLAY_PROVIDERS} from '@angular2-material/core/overlay/overlay';
 //import {MaterialModule} from '@angular2-material/all/all';
+import { FormsModule, FormControl } from '@angular/forms';
+
 
 import { Redirect, RedirectHostName, URLTest } from 'redirect-base/redirect-base'
 
@@ -21,7 +23,7 @@ import { Redirect, RedirectHostName, URLTest } from 'redirect-base/redirect-base
 export class RedirectManager {
     hosts:RedirectHostName[]=[];
     dialogRef: MdDialogRef<HostDialog>;
-
+    redirectDialogRef: MdDialogRef<RedirectDialog>;
 
     asyncTabs: Observable<any>;
     private lastCloseResult: string;
@@ -45,19 +47,19 @@ export class RedirectManager {
 
     public addRedirect(){
         console.warn("new redirect");
-        // let config = new MdDialogConfig();
-        // config.viewContainerRef = this.viewContainerRef;
-        // this.dialogRef = this.dialog.open(HostDialog, config);
-        //
-        // this.dialogRef.afterClosed().subscribe(result => {
-        //     this.lastCloseResult = result;
-        //     this.dialogRef = null;
-        //
-        //     console.warn("dude here");
-        //     console.warn(this.lastCloseResult);
-        //     console.warn(this.dialogRef);
-        //     this.hosts.push(new RedirectHostName(this.lastCloseResult));
-        // });
+        let config = new MdDialogConfig();
+        config.viewContainerRef = this.viewContainerRef;
+        this.redirectDialogRef = this.dialog.open(RedirectDialog, config);
+
+        this.redirectDialogRef.afterClosed().subscribe(result => {
+            this.lastCloseResult = result;
+            this.dialogRef = null;
+
+            console.warn("dude2 here");
+            console.warn(this.lastCloseResult);
+            console.warn(this.dialogRef);
+            this.hosts.push(new RedirectHostName(this.lastCloseResult));
+        });
     }
 
     constructor(
@@ -90,19 +92,32 @@ export class RedirectManager {
 
 //new hostname form
 
+import { URLValidator } from './url-valid-directive';
+
 @Component({
     selector: 'host-dialog',
     encapsulation: ViewEncapsulation.None,
     //providers: [OVERLAY_PROVIDERS],
+    //imports:[FormControl],
+    directives:[URLValidator],
     template: `
   <h1>Enter New Hostname</h1>
-  <p><label>Enter Hostname<input #howMuch></label></p>
-
+  <p><label>{{url.valid?'t':'f'}}  {{url.status}}  {{url.value}}http://<input #url validateURL ngModel required></label></p>
+    <small [hidden]="url.validURL">
+        URL Doesnt appear to be valid
+    </small>
   <button type="button" md-mini-fab (click)="dialogRef.close()"><md-icon class="md-24">close</md-icon></button>
-  <button type="button" md-mini-fab (click)="dialogRef.close(howMuch.value)"><md-icon class="md-24">check</md-icon></button>`
+  <button type="button" md-mini-fab (click)="dialogRef.close(url.value)" [disabled]="!url.validURL  "><md-icon class="md-24">check</md-icon></button>`
+
 })
 export class HostDialog {
     constructor(public dialogRef: MdDialogRef<HostDialog>) { }
+
+    ngOnInit() {
+        console.warn("ngOnInit");
+    }
+
+
 }
 
 
@@ -114,7 +129,7 @@ export class HostDialog {
     providers: [OVERLAY_PROVIDERS],
     template: `
   <h1>Enter New Redirect</h1>
-  <p><label>Enter Redirect<input #howMuch></label></p>
+  <p><label>Enter Redirect<input #url></label></p>
 
   <button type="button" md-mini-fab (click)="dialogRef.close()"><md-icon class="md-24">close</md-icon></button>
   <button type="button" md-mini-fab (click)="dialogRef.close(howMuch.value)"><md-icon class="md-24">check</md-icon></button>`

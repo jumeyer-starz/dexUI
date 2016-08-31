@@ -2,6 +2,7 @@ import {NgModule, ApplicationRef} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import {DextroseApp, Home} from './dextrose/dextrose';
 import {DEMO_APP_ROUTE_PROVIDER} from './dextrose/routes';
 import {RouterModule} from '@angular/router';
@@ -31,13 +32,13 @@ import {SidenavDemo} from './sidenav/sidenav-demo';
 import {PortalDemo, ScienceJoke} from './portal/portal-demo';
 import {MenuDemo} from './menu/menu-demo';
 import {TabsDemo} from './tabs/tab-group-demo';
-import {RedirectManager, HostDialog} from './redirect-manager/redirect-manager';
+import {RedirectManager, HostDialog, RedirectDialog} from './redirect-manager/redirect-manager';
 
 
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule,
+    FormsModule,ReactiveFormsModule,
     HttpModule,
     MaterialModule,
     RouterModule,
@@ -59,7 +60,7 @@ import {RedirectManager, HostDialog} from './redirect-manager/redirect-manager';
     //IconDemo,
     // InputDemo,
 
-    RedirectManager, HostDialog,
+    RedirectManager, HostDialog, RedirectDialog,
     // ListDemo,
     // LiveAnnouncerDemo,
     // MdCheckboxDemoNestedChecklist,
@@ -84,7 +85,7 @@ import {RedirectManager, HostDialog} from './redirect-manager/redirect-manager';
     DextroseApp,
     //JazzDialog,
 
-    HostDialog,
+    HostDialog, RedirectDialog
     // RotiniPanel,
     // ScienceJoke,
     // SpagettiPanel
