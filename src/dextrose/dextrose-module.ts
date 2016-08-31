@@ -31,7 +31,7 @@ import {SidenavDemo} from './sidenav/sidenav-demo';
 import {PortalDemo, ScienceJoke} from './portal/portal-demo';
 import {MenuDemo} from './menu/menu-demo';
 import {TabsDemo} from './tabs/tab-group-demo';
-import {RedirectManager, HostDialog, RedirectHostName, Redirect} from './redirect-manager/redirect-manager';
+import {RedirectManager} from './redirect-manager/redirect-manager';
 
 
 @NgModule({
@@ -59,7 +59,7 @@ import {RedirectManager, HostDialog, RedirectHostName, Redirect} from './redirec
     IconDemo,
     InputDemo,
     // JazzDialog,
-    RedirectManager, HostDialog, Redirect, RedirectHostName,
+    RedirectManager,
     ListDemo,
     LiveAnnouncerDemo,
     MdCheckboxDemoNestedChecklist,
@@ -83,7 +83,7 @@ import {RedirectManager, HostDialog, RedirectHostName, Redirect} from './redirec
   entryComponents: [
     DextroseApp,
     // JazzDialog,
-    HostDialog,
+    //HostDialog,
     RotiniPanel,
     ScienceJoke,
     SpagettiPanel
