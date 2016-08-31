@@ -1,9 +1,10 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewContainerRef, ViewEncapsulation} from '@angular/core';
 import {AsyncPipe} from '@angular/common';
 import {Observable} from 'rxjs/Observable';
-//import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular2-material/dialog/dialog';
-//import {OVERLAY_PROVIDERS} from '@angular2-material/core/overlay/overlay';
+import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular2-material/dialog/dialog';
+import {OVERLAY_PROVIDERS} from '@angular2-material/core/overlay/overlay';
 
+import { Redirect, RedirectHostName, URLTest } from 'redirect-base/redirect-base'
 
 @Component({
     moduleId: module.id,
@@ -12,143 +13,33 @@ import {Observable} from 'rxjs/Observable';
     pipes: [AsyncPipe],
     styleUrls: ['redirect-manager.css'],
     encapsulation: ViewEncapsulation.None,
-    //providers: [MdDialog, OVERLAY_PROVIDERS]
+    providers: [MdDialog, OVERLAY_PROVIDERS]
 })
 
-// class URLTestResult{
-//     path:string;
-//     status:number;
-// }
-//
-// class Redirect{
-//     path:string;
-//     uuid:string;
-//     url:string;
-//     createdBy: string;
-//     createdOn: string;
-//     modifiedOn: string;
-// }
-// class RedirectHostName{
-//     server: string;
-//     redirects: Redirect[];
-//
-//     constructor(s:string){
-//         this.server = s;
-//     }
-// }
-
-
+// ///
+// let config = new MdDialogConfig();
+// config.viewContainerRef = this.viewContainerRef;
+// this.dialogRef = this.dialog.open(JazzDialog, config);
+// this.dialogRef.afterClosed().subscribe(result => {
+//     this.lastCloseResult = result;
+//     this.dialogRef = null;
+// });
+// ///
 export class RedirectManager {
-    //d: RedirectHostName[];
-    hosts : any=     [
-        {
-            server: 'www.starz.com',
-            redirects:[
-                {
-                    path:'/jrm',
-                    uuid:'unique',
-                    enabledTest:true,
-                    enabledProd:true,
-                    url:'http://justinrmeyer.com',
-                    createdBy:'jumeyer',
-                    createdOn:'2016-08-21 00:00:00',
-                    modifiedOn:'2016-08-21 00:00:00',
-                    tests:[
-                        {
-                            path: "/jrm",
-                            status: true
-                        },{
-                            path: "/jrminfo",
-                            status: false
-                        }
-                    ]
-                },{
-                    path:'/justin',
-                    uuid:'unique',
-                    enabledTest:true,
-                    enabledProd:true,
-                    url:'http://justinrmeyer.info',
-                    createdBy:'jumeyer',
-                    createdOn:'2016-08-21 00:00:00',
-                    modifiedOn:'2016-08-21 00:00:00',
-                    tests:[
-                        {
-                            path: "/jrm",
-                            status: true
-                        },{
-                            path: "/jrminfo",
-                            status: false
-                        }
-                    ]
-                }
-            ]
-        },{
-            server: 'starz.com',
-            redirects:[
-                {
-                    path:'/otherurl',
-                    uuid:'unique',
-                    enabledTest:true,
-                    enabledProd:true,
-                    url:'http://other.com',
-                    createdBy:'jumeyer',
-                    createdOn:'2016-08-21 00:00:00',
-                    modifiedOn:'2016-08-21 00:00:00',
-                    tests:[
-                        {
-                            path: "/jrm",
-                            status: true
-                        },{
-                            path: "/jrminfo",
-                            status: false
-                        }
-                    ]
-                },{
-                    path:'/something',
-                    uuid:'unique',
-                    enabledTest:true,
-                    enabledProd:false,
-                    url:'http://something.info',
-                    createdBy:'jumeyer',
-                    createdOn:'2016-08-21 00:00:00',
-                    modifiedOn:'2016-08-21 00:00:00',
-                    tests:[
-                        {
-                            path: "/jrm",
-                            status: true
-                        },{
-                            path: "/jrminfo",
-                            status: false
-                        }
-                    ]
-                },{
-                    path:'/careers',
-                    uuid:'unique',
-                    enabledTest:false,
-                    enabledProd:true,
-                    url:'http://linkedin.com',
-                    createdBy:'jumeyer',
-                    createdOn:'2016-08-23 00:00:00',
-                    modifiedOn:'2016-08-21 01:11:01',
-                    tests:[
-                        {
-                            path: "/jrm",
-                            status: true
-                        },{
-                            path: "/jrminfo",
-                            status: false
-                        }
-                    ]
-                }
-            ]
-        }
-    ];
+    hosts:RedirectHostName[]=[];
+    dialogRef: MdDialogRef<HostDialog>;
 
+
+    asyncTabs: Observable<any>;
+    private lastCloseResult: string;
 
     public addHost(){
-        //let config = new MdDialogConfig();
-        //config.viewContainerRef = this.viewContainerRef;
-        // this.dialogRef = this.dialog.open(HostDialog, config).afterClosed().subscribe(result => {
+        console.warn("add clicked!")
+        let config = new MdDialogConfig();
+        config.viewContainerRef = this.viewContainerRef;
+        this.dialogRef = this.dialog.open(HostDialog, config);
+
+        // this.dialogRef.afterClosed().subscribe(result => {
         //     this.lastCloseResult = result;
         //     this.dialogRef = null;
         //
@@ -159,19 +50,33 @@ export class RedirectManager {
         // });
     }
 
-    asyncTabs: Observable<any>;
 
-    //dialog vars
-    //dialogRef: MdDialogRef<HostDialog>;
-    //private lastCloseResult: string;
+
     constructor(
-        // public dialog: MdDialog,
-        // public viewContainerRef: ViewContainerRef
+        public dialog: MdDialog,
+        public viewContainerRef: ViewContainerRef
     ) {
+        let a = new RedirectHostName('www.starz.com');
+        let b = new RedirectHostName('starz.com');
+
+        let c = new Redirect('/jrm','http://justinrmeyer.com');
+        c.tests.push(new URLTest('asdf'));
+        a.redirects.push(c);
+        b.redirects.push(new Redirect('/jrm','http://justinrmeyer.com'));
+
+        console.warn(a);
+        console.warn(this.hosts);
+
+        this.hosts.push(a);
+        this.hosts.push(b);
+
         this.asyncTabs = Observable.create((observer: any) => {
             setTimeout(() => {
-                observer.next(this.hosts);
+                console.warn("hosts" );
                 console.warn(this.hosts);
+
+                observer.next(this.hosts);
+
             }, 500);
         });
 
@@ -181,16 +86,16 @@ export class RedirectManager {
 
 
 
-// @Component({
-//     selector: 'host-dialog',
-//     template: `
-//   <p>Enter New Hostname</p>
-//   <p><label>Enter Hostname<input #howMuch></label></p>
-//
-//   <button type="button" (click)="dialogRef.close()"><md-icon md-fab  class="md-24">close</md-icon></button>
-//   <button type="button" (click)="dialogRef.close(howMuch.value)"><md-icon md-fab class="md-24">check</md-icon></button>`
-// })
-// export class HostDialog {
-//     constructor(public dialogRef: MdDialogRef<HostDialog>) { }
-// }
-//
+@Component({
+    selector: 'host-dialog',
+    template: `
+  <p>Enter New Hostname</p>
+  <p><label>Enter Hostname<input #howMuch></label></p>
+
+  <button type="button" (click)="dialogRef.close()"><md-icon md-fab  class="md-24">close</md-icon></button>
+  <button type="button" (click)="dialogRef.close(howMuch.value)"><md-icon md-fab class="md-24">check</md-icon></button>`
+})
+export class HostDialog {
+    constructor(public dialogRef: MdDialogRef<HostDialog>) { }
+}
+
