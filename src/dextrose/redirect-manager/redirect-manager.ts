@@ -43,6 +43,23 @@ export class RedirectManager {
         });
     }
 
+    public addRedirect(){
+        console.warn("new redirect");
+        // let config = new MdDialogConfig();
+        // config.viewContainerRef = this.viewContainerRef;
+        // this.dialogRef = this.dialog.open(HostDialog, config);
+        //
+        // this.dialogRef.afterClosed().subscribe(result => {
+        //     this.lastCloseResult = result;
+        //     this.dialogRef = null;
+        //
+        //     console.warn("dude here");
+        //     console.warn(this.lastCloseResult);
+        //     console.warn(this.dialogRef);
+        //     this.hosts.push(new RedirectHostName(this.lastCloseResult));
+        // });
+    }
+
     constructor(
         public dialog: MdDialog,
         public viewContainerRef: ViewContainerRef
@@ -71,20 +88,37 @@ export class RedirectManager {
     }
 }
 
-
+//new hostname form
 
 @Component({
     selector: 'host-dialog',
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['redirect-manager.css'],
+    //providers: [OVERLAY_PROVIDERS],
     template: `
-  <p>Enter New Hostname</p>
+  <h1>Enter New Hostname</h1>
   <p><label>Enter Hostname<input #howMuch></label></p>
 
-  <button type="button" (click)="dialogRef.close()"><md-icon md-fab class="md-24">close</md-icon></button>
-  <button type="button" (click)="dialogRef.close(howMuch.value)"><md-icon md-fab class="md-24">check</md-icon></button>`
+  <button type="button" md-mini-fab (click)="dialogRef.close()"><md-icon class="md-24">close</md-icon></button>
+  <button type="button" md-mini-fab (click)="dialogRef.close(howMuch.value)"><md-icon class="md-24">check</md-icon></button>`
 })
 export class HostDialog {
     constructor(public dialogRef: MdDialogRef<HostDialog>) { }
 }
 
+
+//new redirect form
+
+@Component({
+    selector: 'redirect-dialog',
+    encapsulation: ViewEncapsulation.None,
+    providers: [OVERLAY_PROVIDERS],
+    template: `
+  <h1>Enter New Redirect</h1>
+  <p><label>Enter Redirect<input #howMuch></label></p>
+
+  <button type="button" md-mini-fab (click)="dialogRef.close()"><md-icon class="md-24">close</md-icon></button>
+  <button type="button" md-mini-fab (click)="dialogRef.close(howMuch.value)"><md-icon class="md-24">check</md-icon></button>`
+})
+export class RedirectDialog {
+    constructor(public dialogRef: MdDialogRef<RedirectDialog>) { }
+}

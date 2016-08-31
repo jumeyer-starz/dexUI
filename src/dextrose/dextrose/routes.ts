@@ -34,7 +34,7 @@ export const routes: Routes = [
 
   {path: '', component: CardDemo},
   {path: 'home', component: CardDemo},
-  {path: 'redirects', component: RedirectManager}
+  {path: 'redirects', component: RedirectManager},
   // {path: 'button', component: ButtonDemo},
   // {path: 'card', component: CardDemo},
   // {path: 'radio', component: RadioDemo},

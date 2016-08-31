@@ -44,7 +44,7 @@
                     </md-card-content>
                 </md-card>
                 <div style="text-align:center">
-                    <button md-fab (click)="open()">
+                    <button md-mini-fab [disabled]="dialogRef" (click)="addRedirect()">
                         <md-icon class="md-24">add</md-icon>
                     </button>
                 </div>

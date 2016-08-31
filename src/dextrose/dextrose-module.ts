@@ -7,7 +7,7 @@ import {DEMO_APP_ROUTE_PROVIDER} from './dextrose/routes';
 import {RouterModule} from '@angular/router';
 import {MaterialModule} from '@angular2-material/all/all';
 import {ProgressBarDemo} from './progress-bar/progress-bar-demo';
-//import {JazzDialog, DialogDemo} from './dialog/dialog-demo';
+import {JazzDialog, DialogDemo} from './dialog/dialog-demo';
 import {RippleDemo} from './ripple/ripple-demo';
 import {IconDemo} from './icon/icon-demo';
 import {GesturesDemo} from './gestures/gestures-demo';
@@ -52,15 +52,14 @@ import {RedirectManager, HostDialog} from './redirect-manager/redirect-manager';
     CardDemo,
     // CheckboxDemo,
     DextroseApp,
-    // // DialogDemo,
+    //DialogDemo,JazzDialog,
     // GesturesDemo,
     // GridListDemo,
     // Home,
     //IconDemo,
     // InputDemo,
-    // // JazzDialog,
-    HostDialog,
-    //RedirectManager,
+
+    RedirectManager, HostDialog,
     // ListDemo,
     // LiveAnnouncerDemo,
     // MdCheckboxDemoNestedChecklist,
@@ -83,7 +82,7 @@ import {RedirectManager, HostDialog} from './redirect-manager/redirect-manager';
   ],
   entryComponents: [
     DextroseApp,
-    // JazzDialog,
+    //JazzDialog,
 
     HostDialog,
     // RotiniPanel,
