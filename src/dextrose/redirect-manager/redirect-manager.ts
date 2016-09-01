@@ -1,4 +1,4 @@
-import {Component, ViewContainerRef, ViewEncapsulation} from '@angular/core';
+import {Component, ViewContainerRef, ViewEncapsulation, Input} from '@angular/core';
 import {AsyncPipe} from '@angular/common';
 import {Observable} from 'rxjs/Observable';
 import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular2-material/dialog/dialog';
@@ -18,48 +18,59 @@ import { Redirect, RedirectHostName, URLTest } from 'redirect-base/redirect-base
     encapsulation: ViewEncapsulation.None,
     providers: [MdDialog, OVERLAY_PROVIDERS]
 })
-
-
 export class RedirectManager {
     hosts:RedirectHostName[]=[];
-    dialogRef: MdDialogRef<HostDialog>;
-    redirectDialogRef: MdDialogRef<RedirectDialog>;
+    hostDialogRef:MdDialogRef<HostDialog>;
+    redirectDialogRef:MdDialogRef<RedirectDialog>;
 
     asyncTabs: Observable<any>;
-    private lastCloseResult: string;
+
 
     public addHost(){
         console.warn("add clicked!")
         let config = new MdDialogConfig();
         config.viewContainerRef = this.viewContainerRef;
-        this.dialogRef = this.dialog.open(HostDialog, config);
+        this.hostDialogRef = this.dialog.open(HostDialog, config);
 
-        this.dialogRef.afterClosed().subscribe(result => {
-            this.lastCloseResult = result;
-            this.dialogRef = null;
+        this.hostDialogRef.afterClosed().subscribe(result => {
+            console.warn(this.hostDialogRef);
+            this.hostDialogRef = null;
 
-            console.warn("dude here");
-            console.warn(this.lastCloseResult);
-            console.warn(this.dialogRef);
-            this.hosts.push(new RedirectHostName(this.lastCloseResult));
+            console.warn("addHost");
+            if(result != "")
+                this.hosts.push(new RedirectHostName(result));
         });
     }
 
-    public addRedirect(server:string){
+    public addEditRedirectDialog(server:string){
         console.warn("new redirect " + server);
-        let config = new MdDialogConfig();
+        let config:MdDialogConfig = new MdDialogConfig();
         config.viewContainerRef = this.viewContainerRef;
-        this.redirectDialogRef = this.dialog.open(RedirectDialog, config);
+
+        //this.redirectDialogRef = this.dialog.open(RedirectDialog, config);
+
 
         this.redirectDialogRef.afterClosed().subscribe(result => {
-            this.lastCloseResult = result;
-            this.dialogRef = null;
+            console.warn(this.redirectDialogRef);
+            this.redirectDialogRef = null;
 
-            console.warn("dude2 here");
-            console.warn(this.lastCloseResult);
-            console.warn(this.dialogRef);
-            this.hosts.push(new RedirectHostName(this.lastCloseResult));
+            console.warn("addEditRedirectDialog for " + server + " " + result.path + " to " + result.url);
+            this.addRedirect(server, result.path, result.url);
         });
+    }
+
+    public deleteRedirect(){
+
+    }
+
+    private addRedirect(host:string, path:string, url:string){
+        for(let i:number = 0; i < this.hosts.length; i++){
+            if(this.hosts[i].server == host){
+                let newRedirect:Redirect = new Redirect(path, url);
+                this.hosts[i].redirects.push(newRedirect);
+            }
+        }
+        console.warn(this.hosts);
     }
 
     constructor(
@@ -92,50 +103,56 @@ export class RedirectManager {
     }
 }
 
-//new hostname form
 
-//import { URLValidator } from './url-valid-directive';
+import { URLValidator } from './url-valid-directive';
 
 @Component({
     selector: 'host-dialog',
     encapsulation: ViewEncapsulation.None,
-    //providers: [OVERLAY_PROVIDERS],
+    providers: [OVERLAY_PROVIDERS],
     //imports:[FormControl],
-    //directives:[URLValidator],
+    directives:[URLValidator],
     template: `
   <h1>Enter New Hostname</h1>
   <p><label>http://<input #url validateURL ngModel required></label></p>
     <small [hidden]="!url.valid">
         URL Doesnt appear to be valid
     </small>
-  <button type="button" md-mini-fab (click)="dialogRef.close()"><md-icon class="md-24">close</md-icon></button>
-  <button type="button" md-mini-fab (click)="dialogRef.close(url.value)" [disabled]="url.valid  "><md-icon class="md-24">check</md-icon></button>`
+  <button type="button" md-mini-fab (click)="hostDialogRef.close()"><md-icon class="md-24">close</md-icon></button>
+  <button type="button" md-mini-fab (click)="hostDialogRef.close(url.value)" [disabled]="url.valid  "><md-icon class="md-24">check</md-icon></button>`
 
 })
 export class HostDialog {
-    constructor(public dialogRef: MdDialogRef<HostDialog>) { }
+    constructor(
+        public hostDialogRef: MdDialogRef<HostDialog>) { }
 
     ngOnInit() {
-        console.warn("ngOnInit");
+        console.warn("HostDialog ngOnInit");
     }
-
 
 }
 
 
-//new redirect form
 
 @Component({
     selector: 'redirect-dialog',
     encapsulation: ViewEncapsulation.None,
     providers: [OVERLAY_PROVIDERS],
     template: `
-  <h1>Enter New Redirect</h1>
-  <p><label>URL Path /<input #path></label></p>
-
-  <button type="button" md-mini-fab (click)="dialogRef.close()"><md-icon class="md-24">close</md-icon></button>
-  <button type="button" md-mini-fab (click)="dialogRef.close(path.value)"><md-icon class="md-24">check</md-icon></button>`
+  <h1>Enter New Redirect {{hostString}}</h1>
+  <p><label>hostname/<input #path></label></p>
+  <p><label>Redirects to <br>http://<input #url></label></p>
+  <button type="button" md-mini-fab (click)="redirectDialogRef.close()"><md-icon class="md-24">close</md-icon></button>
+  <button type="button" md-mini-fab (click)="redirectDialogRef.close({path:path.value, url:url.value})"><md-icon class="md-24">check</md-icon></button>`
 })
 export class RedirectDialog {
-    constructor(public dialogRef: MdDialogRef<RedirectDialog>) { }
+    host:RedirectHostName;
+    @Input('hs') hostString:string;
+
+    constructor(
+        public redirectDialogRef: MdDialogRef<RedirectDialog>
+    ) {
+        console.warn("constructor called " +this.hostString);
+        //this.hostString = ;
+    }
 }

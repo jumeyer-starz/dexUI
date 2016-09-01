@@ -1,8 +1,8 @@
 <md-sidenav-layout class="demo-root" fullscreen>
   <md-sidenav #start>
     <md-nav-list>
-      <a md-list-item [routerLink]="['/home']">Home</a>
-      <a md-list-item [routerLink]="['/redirects']">Redirects</a>
+      <a md-list-item [routerLink]="['/home']" (click)="setTitle('Dextrose :: Home')">Home</a>
+      <a md-list-item [routerLink]="['/redirects']" (click)="setTitle('Dextrose :: Redirects')">Redirects</a>
 
     </md-nav-list>
     <button md-button (click)="start.close()"><md-icon>keyboard_arrow_left</md-icon></button>

@@ -1,5 +1,5 @@
 import {NgModule, ApplicationRef} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -45,6 +45,7 @@ import {RedirectManager, HostDialog, RedirectDialog} from './redirect-manager/re
   ],
   providers: [
     DEMO_APP_ROUTE_PROVIDER,
+      Title
   ],
   declarations: [
     // BaselineDemo,

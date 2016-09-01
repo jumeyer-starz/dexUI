@@ -36,7 +36,7 @@ export class DialogDemo {
   template: `
   <p>It's Jazz!</p>
   <p><label>How much? <input #howMuch></label></p>
-  <button type="button" (click)="dialogRef.close(howMuch.value)">Close dialog</button>`
+  <button type="button" (click)="hostDialogRef.close(howMuch.value)">Close dialog</button>`
 })
 export class JazzDialog {
   constructor(public dialogRef: MdDialogRef<JazzDialog>) { }

@@ -1,15 +1,19 @@
 <div class="redirect-manager-container">
-    <button md-mini-fab style="position:absolute; right:10px; z-index: 100" [disabled]="dialogRef" (click)="addHost()">
+    <button md-mini-fab style="position:absolute; right:10px; z-index: 100" [disabled]="redirectDialogRef || hostDialogRef" (click)="addHost()">
         <md-icon class="md-24">add_to_queue</md-icon>
     </button>
     <md-tab-group class="demo-tab-group">
         <md-tab *ngFor="let tab of asyncTabs | async; let a=index; trackBy:customTrackBy;">
             <template md-tab-label>{{tab.server}}</template>
             <template md-tab-content>
-                <md-card *ngFor="let redirect of tab.redirects; let i=index; trackBy:customTrackBy" >
-                    <md-card-header style="width: 250px;">
+                <md-card *ngFor="let redirect of tab.redirects; let i=index; trackBy:customTrackBy">
+                    <md-card-header style="width: 250px;" >
                         <md-card-title>{{redirect.path}}</md-card-title>
                         <md-card-subtitle>{{redirect.url}}</md-card-subtitle>
+
+                        <button md-mini-fab [disabled]="redirectDialogRef || hostDialogRef" (click)="addEditRedirectDialog()">
+                            <md-icon class="md-24">edit</md-icon>
+                        </button>
                     </md-card-header>
                     <md-card-content>
                         <div class="testList">
@@ -39,12 +43,15 @@
 
                             <p>Created by: {{redirect.createdBy}}</p>
                             <p>On: {{redirect.createdOn}}</p>
+                            <button md-mini-fab [disabled]="1 || redirectDialogRef || hostDialogRef" (click)="deleteRedirect()">
+                                <md-icon class="md-24">delete</md-icon>
+                            </button>
                         </div>
 
                     </md-card-content>
                 </md-card>
                 <div style="text-align:center">
-                    <button md-mini-fab [disabled]="dialogRef" (click)="addRedirect(tab.server)">
+                    <button md-mini-fab [disabled]="redirectDialogRef || hostDialogRef" (click)="addEditRedirectDialog(tab.server)">
                         <md-icon class="md-24">add</md-icon>
                     </button>
                 </div>

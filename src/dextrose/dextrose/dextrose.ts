@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-
+import { Title }     from '@angular/platform-browser';
 
 @Component({
   selector: 'home',
@@ -17,4 +17,9 @@ export class Home {}
   styleUrls: ['dextrose.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class DextroseApp { }
+export class DextroseApp {
+    public constructor(private titleService: Title ) { }
+    public setTitle( newTitle: string) {
+        this.titleService.setTitle( newTitle );
+    }
+}
