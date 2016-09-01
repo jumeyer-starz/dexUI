@@ -14,16 +14,16 @@
                     <md-card-content>
                         <div class="testList">
                             <h2>Tests
-                                <button md-mini-fab>
-                                <md-icon class="md-18">add</md-icon>
+                                <button md-mini-fab >
+                                <md-icon size="20">my_library_add</md-icon>
                                 </button>
                             </h2>
                             <md-nav-list>
                                 <md-list-item *ngFor="let test of redirect.tests; let t=index; trackBy:customTrackBy">
                                     <a md-line>{{ test.path }}</a>
-                                    <button md-icon-button >
-                                        <md-icon>{{test.status ? 'check' : 'error'}}</md-icon>
-                                    </button>
+                                    <!--<button md-icon-button >-->
+                                        <!--<md-icon size="20">{{test.status ? 'check' : 'error'}}</md-icon>-->
+                                    <!--</button>-->
                                 </md-list-item>
                             </md-nav-list>
                         </div>
@@ -44,7 +44,7 @@
                     </md-card-content>
                 </md-card>
                 <div style="text-align:center">
-                    <button md-mini-fab [disabled]="dialogRef" (click)="addRedirect()">
+                    <button md-mini-fab [disabled]="dialogRef" (click)="addRedirect(tab.server)">
                         <md-icon class="md-24">add</md-icon>
                     </button>
                 </div>

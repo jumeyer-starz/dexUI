@@ -45,8 +45,8 @@ export class RedirectManager {
         });
     }
 
-    public addRedirect(){
-        console.warn("new redirect");
+    public addRedirect(server:string){
+        console.warn("new redirect " + server);
         let config = new MdDialogConfig();
         config.viewContainerRef = this.viewContainerRef;
         this.redirectDialogRef = this.dialog.open(RedirectDialog, config);
@@ -71,6 +71,8 @@ export class RedirectManager {
 
         let c = new Redirect('/jrm','http://justinrmeyer.com');
         c.tests.push(new URLTest('asdf'));
+        c.tests.push(new URLTest('11'));
+        c.tests.push(new URLTest('33'));
         a.redirects.push(c);
         b.redirects.push(new Redirect('/jrm','http://justinrmeyer.com'));
 
@@ -92,22 +94,22 @@ export class RedirectManager {
 
 //new hostname form
 
-import { URLValidator } from './url-valid-directive';
+//import { URLValidator } from './url-valid-directive';
 
 @Component({
     selector: 'host-dialog',
     encapsulation: ViewEncapsulation.None,
     //providers: [OVERLAY_PROVIDERS],
     //imports:[FormControl],
-    directives:[URLValidator],
+    //directives:[URLValidator],
     template: `
   <h1>Enter New Hostname</h1>
-  <p><label>{{url.valid?'t':'f'}}  {{url.status}}  {{url.value}}http://<input #url validateURL ngModel required></label></p>
-    <small [hidden]="url.validURL">
+  <p><label>http://<input #url validateURL ngModel required></label></p>
+    <small [hidden]="!url.valid">
         URL Doesnt appear to be valid
     </small>
   <button type="button" md-mini-fab (click)="dialogRef.close()"><md-icon class="md-24">close</md-icon></button>
-  <button type="button" md-mini-fab (click)="dialogRef.close(url.value)" [disabled]="!url.validURL  "><md-icon class="md-24">check</md-icon></button>`
+  <button type="button" md-mini-fab (click)="dialogRef.close(url.value)" [disabled]="url.valid  "><md-icon class="md-24">check</md-icon></button>`
 
 })
 export class HostDialog {
@@ -129,10 +131,10 @@ export class HostDialog {
     providers: [OVERLAY_PROVIDERS],
     template: `
   <h1>Enter New Redirect</h1>
-  <p><label>Enter Redirect<input #url></label></p>
+  <p><label>URL Path /<input #path></label></p>
 
   <button type="button" md-mini-fab (click)="dialogRef.close()"><md-icon class="md-24">close</md-icon></button>
-  <button type="button" md-mini-fab (click)="dialogRef.close(howMuch.value)"><md-icon class="md-24">check</md-icon></button>`
+  <button type="button" md-mini-fab (click)="dialogRef.close(path.value)"><md-icon class="md-24">check</md-icon></button>`
 })
 export class RedirectDialog {
     constructor(public dialogRef: MdDialogRef<RedirectDialog>) { }
