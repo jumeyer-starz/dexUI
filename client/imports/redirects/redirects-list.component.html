@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="newPanel">
+      <parties-form [hidden]="!user"></parties-form>
+      <div [hidden]="user"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row ma-filters">
+  <div class="col-md-12">
+    <h4>Redirects:</h4>
+    <form class="form-inline" >
+      <input type="text" style="width:300px;"class="form-control" #searchtext placeholder="Search by host, path or url">
+      <button type="button" class="btn btn-primary" (click)="search(searchtext.value)">Search</button>
+      Sort by name:
+        <select class="form-control" #sort (change)="changeSortOrder(sort.value)">
+          <option value="1" selected>Ascending</option>
+          <option value="-1">Descending</option>
+        </select>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <pagination-controls (pageChange)="onPageChanged($event)"></pagination-controls>
+      </li>
+
+      <li *ngFor="let party of parties"
+          class="list-group-item ma-party-item">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="ma-party-name">
+                  <a [routerLink]="['/redirect', party._id]">{{party.name}}/{{party.description}} => {{party.location.name}}</a>
+                </div>
+            </div>
+
+            <div class="col-sm-4 pull-right">
+
+                    <div class="ib">
+                        <div class="ma-amount">
+                            Passing {{party | rsvp:'passing'}}
+                        </div>
+                    </div>
+
+                    <div class="ib">
+                        <div class="ma-amount">
+                            Failing {{party | rsvp:'failing'}}
+                        </div>
+                    </div>
+
+                    <div class="ib">
+                        <div class="ma-amount">
+                            Total {{party | rsvp:'total'}}
+                        </div>
+                    </div>
+
+            </div>
+          <!--<div class="col-sm-4">-->
+            <!--<button class="btn btn-danger pull-right" [hidden]="!isOwner(party)" (click)="removeParty(party)"><i-->
+                    <!--class="fa fa-times"></i></button>-->
+          <!--</div>-->
+        </div>
+          <div class="row ma-party-item-bottom">
+
+
+
+        </div>
+      </li>
+
+      <li class="list-group-item">
+        <pagination-controls (pageChange)="onPageChanged($event)"></pagination-controls>
+      </li>
+    </ul>
+  </div>
+
+</div>
