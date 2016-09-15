@@ -2,22 +2,20 @@ export interface Redirect {
   _id?: string;
   name: string;
   description: string;
-  location: UrlTest;
+  location: string;
   owner?: string;
   testEnabled: boolean;
   prodEnabled: boolean;
   invited?: string[];
-  urlTests?: urlTest[];
+  urlTests?: UrlTest[];
 }
 
-interface urlTest {
-  userId: string;
-  response: string;
-}
 
 interface UrlTest {
-  name: string;
-  lat?: number;
-  lng?: number;
+  userId: string;
+  response: string;
+  lastRun: string;
+  expect:boolean;
+  lastStatus:boolean;
 }
 
