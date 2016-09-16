@@ -52,7 +52,7 @@ export class PartyDetailsComponent extends MeteorComponent implements OnInit {
       });
   }
 
-  saveParty() {
+  saveParty() {ag
     if (Meteor.userId()) {
       Redirects.update(this.party._id, {
         $set: {

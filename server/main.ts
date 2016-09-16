@@ -1,4 +1,4 @@
-import {loadRedirects} from './imports/fixtures/parties';
+import {loadRedirects} from './imports/fixtures/redirects';
 import {Meteor} from 'meteor/meteor';
 //import consul from 'consul';
 

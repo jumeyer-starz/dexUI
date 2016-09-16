@@ -7,10 +7,10 @@ export function loadRedirects() {
       {
         name: 'place',
         description: 'holder',
-        location: {
-          name: 'test'
-        },
-        testEnabled: true
+        // location: {
+        //   name: 'test'
+        // },
+        //testEnabled: true
       }
     ];
 

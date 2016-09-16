@@ -2,10 +2,10 @@ export interface Redirect {
   _id?: string;
   name: string;
   description: string;
-  location: string;
+  location?: string;
   owner?: string;
-  testEnabled: boolean;
-  prodEnabled: boolean;
+  testEnabled?: boolean;
+  prodEnabled?: boolean;
   invited?: string[];
   urlTests?: UrlTest[];
 }

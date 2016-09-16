@@ -11,7 +11,7 @@ import template from './redirects-form.component.html';
   template,
   directives: [REACTIVE_FORM_DIRECTIVES]
 })
-export class PartiesFormComponent implements OnInit {
+export class RedirectFormComponent implements OnInit {
   addForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
@@ -32,7 +32,7 @@ export class PartiesFormComponent implements OnInit {
     this.addForm.controls['testEnabled']['updateValue'](false);
   }
 
-  addParty() {
+  addRedirect() {
     if (this.addForm.valid) {
       if (Meteor.userId()) {
         let newRd:any  = {

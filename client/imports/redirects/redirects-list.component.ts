@@ -9,7 +9,7 @@ import { PaginationService, PaginationControlsCmp } from 'ng2-pagination';
 
 import { Redirects }   from '../../../both/collections/redirect.collection';
 import { Redirect } from '../../../both/interfaces/redirect.interface';
-import { PartiesFormComponent } from './redirects-form.component';
+import { RedirectFormComponent } from './redirects-form.component';
 import { RsvpPipe } from '../shared/rsvp.pipe';
 
 import template from './redirects-list.component.html';
@@ -18,11 +18,11 @@ import template from './redirects-list.component.html';
   selector: 'parties-list',
   template,
   viewProviders: [PaginationService],
-  directives: [PartiesFormComponent, ROUTER_DIRECTIVES, PaginationControlsCmp],
+  directives: [RedirectFormComponent, ROUTER_DIRECTIVES, PaginationControlsCmp],
   pipes: [RsvpPipe]
 })
 @InjectUser('user')
-export class PartiesListComponent extends MeteorComponent implements OnInit {
+export class RedirectListComponent extends MeteorComponent implements OnInit {
   parties: Mongo.Cursor<Redirect>;
   partiesSize: number = 0;
   pageSize: number = 10;
