@@ -4,10 +4,11 @@ import { Meteor } from 'meteor/meteor';
 
 import { Redirects } from '../../../both/collections/redirect.collection';
 
+//noinspection TypeScriptCheckImport
 import template from './redirects-form.component.html';
 
 @Component({
-  selector: 'parties-form',
+  selector: 'redirects-form',
   template,
   directives: [REACTIVE_FORM_DIRECTIVES]
 })
@@ -19,17 +20,18 @@ export class RedirectFormComponent implements OnInit {
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       name: ['', Validators.required],
-      description: [],
-      location: ['', Validators.required],
-      public: [false]
+      description: ['', Validators.required],
+      redirect: ['', Validators.required]
+      //public: [false]
     });
   }
 
   resetForm() {
-    this.addForm.controls['name']['updateValue']('');
-    this.addForm.controls['description']['updateValue']('');
-    this.addForm.controls['location']['updateValue']('');
-    this.addForm.controls['testEnabled']['updateValue'](false);
+    console.warn("resetting form");
+    // this.addForm.controls['name']['updateValue']('');
+    // this.addForm.controls['description']['updateValue']('');
+    // this.addForm.controls['location']['updateValue']('');
+    // this.addForm.controls['testEnabled']['updateValue'](false);
   }
 
   addRedirect() {
@@ -38,9 +40,8 @@ export class RedirectFormComponent implements OnInit {
         let newRd:any  = {
           name: this.addForm.value.name,
           description: this.addForm.value.description,
-          location: {
-            name: this.addForm.value.location
-          },
+          redirect: this.addForm.value.redirect,
+
           testEnabled: this.addForm.value.testEnabled,
           owner: Meteor.userId()
         };
@@ -58,3 +59,8 @@ export class RedirectFormComponent implements OnInit {
     }
   }
 }
+
+
+// location: {
+//   name: this.addForm.value.location
+// },

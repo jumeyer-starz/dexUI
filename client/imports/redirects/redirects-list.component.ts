@@ -12,6 +12,7 @@ import { Redirect } from '../../../both/interfaces/redirect.interface';
 import { RedirectFormComponent } from './redirects-form.component';
 import { RsvpPipe } from '../shared/rsvp.pipe';
 
+//noinspection TypeScriptCheckImport
 import template from './redirects-list.component.html';
 
 @Component({
@@ -71,6 +72,7 @@ export class RedirectListComponent extends MeteorComponent implements OnInit {
   }
 
   search(value: string) {
+    console.warn("searching on "+value);
     this.curPage.set(1);
     this.location.set(value);
   }

@@ -1,7 +1,20 @@
 <nav class="navbar navbar-light bg-faded">
   <a class="navbar-brand" href="#">Dextrose</a>
   <login-buttons _class="pull-right" ></login-buttons>
+    a{{ ldapLoginButton }}b
+<!--<button click="doThis()">doThis</button>-->
 </nav>
+
 <div class="container-fluid">
   <router-outlet></router-outlet>
 </div>
+
+
+
+
+<template name="ldapLoginButton">
+
+<div _class="pull-right">
+    LOGIN HERE
+</div>
+</template>

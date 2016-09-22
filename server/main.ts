@@ -15,6 +15,9 @@ import {Redirect} from "../both/interfaces/redirect.interface";
 var consul_test:any;
 var consul_prod:any;
 
+Accounts.onLogin(function(info) {
+  console.log("onLogin fired" + info);
+});
 
 Meteor.methods({
   guid:function():string{
@@ -24,20 +27,33 @@ Meteor.methods({
     });
   },
   pushToConsul:function(newRd: Redirect){
-    console.warn("pushed" + newRd.name);
-    let myGuid = this.guid();
+    console.warn("pushed:" + newRd.name);
+    let myGuid = Meteor.call('guid');
     consul_prod.kv.set('redirects/'+newRd.name+'/'+myGuid, 'value', function(){console.warn('done');})
     consul_test.kv.set('redirects/'+newRd.name+'/'+myGuid, 'value', function(){console.warn('done');})
   },
   test: function(){
     console.warn("test called");
+  },
+  loginWithLdap: function (username, password, callback) {
+    console.warn("loginWLdap now");
+    // var methodArguments = {username: username, pwd: password, ldap: true, data: LDAP.data()};
+    //  Accounts.callLoginMethod({
+    //   methodArguments: [methodArguments],
+    //   validateResult: function (result) {
+    //   },
+    //   userCallback: callback
+    //  });
   }
+
 });
+
+
+
 
 Meteor.startup(() => {
   // load initial Redirects
   loadRedirects();
-
 
 
   console.warn("i'm a server");

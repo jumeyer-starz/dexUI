@@ -13,6 +13,7 @@ import { Redirect } from '../../../both/interfaces/redirect.interface';
 import { DisplayNamePipe } from '../shared/display-name.pipe';
 
 
+//noinspection TypeScriptCheckImport
 import template from './redirect-details.component.html';
 
 @Component({
@@ -22,7 +23,7 @@ import template from './redirect-details.component.html';
   pipes: [DisplayNamePipe]
 })
 @InjectUser('user')
-export class PartyDetailsComponent extends MeteorComponent implements OnInit {
+export class RedirectDetailsComponent extends MeteorComponent implements OnInit {
   partyId: string;
   party: Redirect;
   users: Mongo.Cursor<any>;
@@ -58,7 +59,7 @@ export class PartyDetailsComponent extends MeteorComponent implements OnInit {
         $set: {
           name: this.party.name,
           description: this.party.description,
-          location: this.party.location
+          redirect: this.party.redirect
         }
       });
       console.warn('saved');
@@ -76,6 +77,13 @@ export class PartyDetailsComponent extends MeteorComponent implements OnInit {
 
       alert('User successfully invited.');
     });
+  }
+
+  removeParty(party) {
+    //prompt here
+    Redirects.remove(party._id);
+    window.location.href = '/redirects'; //FIXME
+
   }
 
   reply(rsvp: string) {

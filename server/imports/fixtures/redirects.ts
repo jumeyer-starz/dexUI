@@ -7,6 +7,7 @@ export function loadRedirects() {
       {
         name: 'place',
         description: 'holder',
+        redirect:'http://dude.com'
         // location: {
         //   name: 'test'
         // },

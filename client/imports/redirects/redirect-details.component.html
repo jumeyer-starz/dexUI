@@ -14,7 +14,7 @@
 
         <div class="form-group">
         <label>URL to redirect to</label>
-        /<input [disabled]="!isOwner" type="text" [(ngModel)]="party.location.name" name="location" class="form-control">
+        /<input [disabled]="!isOwner" type="text" [(ngModel)]="party.redirect" name="redirect" class="form-control">
         </div>
 
         <!--<div class="checkbox">-->
@@ -26,8 +26,8 @@
 
 
         <div class="form-group">
-          <button class="btn btn-danger pull-right" [hidden]="!isOwner" (click)="removeParty(party)"><i
-                  class="fa fa-times"></i></button>
+          <button class="btn btn-danger pull-right" [hidden]="!isOwner" (click)="removeParty(party)" >
+              <i class="fa fa-times"></i></button>
           <button [disabled]="!isOwner" type="submit" class="btn btn-primary">Save</button>
             <a [routerLink]="['/redirects']" class="btn">Back</a>
       </div>

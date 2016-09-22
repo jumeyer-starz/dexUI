@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="newPanel">
-      <parties-form [hidden]="!user"></parties-form>
+      <redirects-form [hidden]="!user"></redirects-form>
       <div [hidden]="user"></div>
     </div>
   </div>
@@ -34,7 +34,8 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="ma-party-name">
-                  <a [routerLink]="['/redirect', party._id]">{{party.name}}/{{party.description}} => {{party.location.name}}</a>
+                  <a [routerLink]="['/redirect', party._id]">{{party.name}}/{{party.description}} => {{party.redirect}}</a>
+                    <br>{{party.owner}}
                 </div>
             </div>
 
