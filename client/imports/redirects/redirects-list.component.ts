@@ -27,9 +27,11 @@ export class RedirectListComponent extends MeteorComponent implements OnInit {
   parties: Mongo.Cursor<Redirect>;
   partiesSize: number = 0;
   pageSize: number = 10;
+
   curPage: ReactiveVar<number> = new ReactiveVar<number>(1);
   nameOrder: ReactiveVar<number> = new ReactiveVar<number>(1);
   location: ReactiveVar<string> = new ReactiveVar<string>(null);
+
   loading: boolean = false;
   user: Meteor.User;
 
