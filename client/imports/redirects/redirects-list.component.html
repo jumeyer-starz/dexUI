@@ -13,10 +13,18 @@
     <form class="form-inline" >
       <input type="text" style="width:300px;"class="form-control" #searchtext placeholder="Search by host, path or url">
       <button type="button" class="btn btn-primary" (click)="search(searchtext.value)">Search</button>
-      Sort by name:
-        <select class="form-control" #sort (change)="changeSortOrder(sort.value)">
-          <option value="1" selected>Ascending</option>
-          <option value="-1">Descending</option>
+      Sort by :
+        <select class="form-control" #sortBy (change)="changeSortBy(sortBy.value)">
+            <option value="name" selected>Hostname</option>
+            <option value="description" >Path</option>
+            <option value="redirect" >URL</option>
+            <option value="redirect" >Creator</option>
+            <option value="tests" >Fail Count</option>
+            <option value="tests" >User</option>
+        </select>
+        <select class="form-control" #sortOrder (change)="changeSortOrder(sortOrder.value)">
+            <option value="1" selected>Ascending</option>
+            <option value="-1">Descending</option>
         </select>
     </form>
   </div>
@@ -32,14 +40,19 @@
       <li *ngFor="let party of parties"
           class="list-group-item ma-party-item">
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-6">
                 <div class="ma-party-name">
                   <b><a [routerLink]="['/redirect', party._id]">{{party.name}}/{{party.description}} => {{party.redirect}}</a></b>
                     <br>{{party.owner}}
                 </div>
             </div>
 
-            <div class="col-sm-4 pull-right">
+            <div class="col-sm-6 pull-right">
+                    <div class="ib">
+                        <div class="ma-amount">
+                            Test, Production
+                        </div>
+                    </div>
 
                     <div class="ib">
                         <div class="ma-amount">

@@ -5,7 +5,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Counts } from 'meteor/tmeasday:publish-counts';
 import { InjectUser } from 'angular2-meteor-accounts-ui';
 import { MeteorComponent } from 'angular2-meteor';
-import { PaginationService, PaginationControlsCmp } from 'ng2-pagination';
+//import { PaginationService, PaginationControlsCmp } from 'ng2-pagination';
 
 import { Redirects }   from '../../../both/collections/redirect.collection';
 import { Redirect } from '../../../both/interfaces/redirect.interface';
@@ -18,8 +18,8 @@ import template from './redirects-list.component.html';
 @Component({
   selector: 'parties-list',
   template,
-  viewProviders: [PaginationService],
-  directives: [RedirectFormComponent, ROUTER_DIRECTIVES, PaginationControlsCmp],
+  //viewProviders: [PaginationService],
+  directives: [RedirectFormComponent, ROUTER_DIRECTIVES],
   pipes: [RsvpPipe]
 })
 @InjectUser('user')
@@ -28,44 +28,55 @@ export class RedirectListComponent extends MeteorComponent implements OnInit {
   partiesSize: number = 0;
   pageSize: number = 10;
 
-  curPage: ReactiveVar<number> = new ReactiveVar<number>(1);
-  nameOrder: ReactiveVar<number> = new ReactiveVar<number>(1);
+  //curPage: ReactiveVar<number> = new ReactiveVar<number>(1);
+  //nameOrder: ReactiveVar<number> = new ReactiveVar<number>(1);
+
+  sortBy:    ReactiveVar<string> = new ReactiveVar<string>("name"); //hostname
+  sortOrder: ReactiveVar<number> = new ReactiveVar<number>(1); //ascending
+
   location: ReactiveVar<string> = new ReactiveVar<string>(null);
 
   loading: boolean = false;
   user: Meteor.User;
 
-  constructor(private paginationService: PaginationService) {
+  constructor() {
     super();
   }
 
   ngOnInit() {
-    this.paginationService.register({
-      id: this.paginationService.defaultId,
-      itemsPerPage: this.pageSize,
-      currentPage: this.curPage.get(),
-      totalItems: this.partiesSize,
-    });
+
+    // this.paginationService.register({
+    //   id: this.paginationService.defaultId,
+    //   itemsPerPage: this.pageSize,
+    //   currentPage: this.curPage.get(),
+    //   totalItems: this.partiesSize,
+    // });
+
 
     this.autorun(() => {
       const options = {
-        limit: this.pageSize,
-        skip: (this.curPage.get() - 1) * this.pageSize,
-        sort: { name: this.nameOrder.get() }
+        // limit: this.pageSize,
+        // skip: (this.curPage.get() - 1) * this.pageSize,
+        sort: {
+          [this.sortBy.get()]:this.sortOrder.get()
+        }
       };
 
       this.loading = true;
-      this.paginationService.setCurrentPage(this.paginationService.defaultId, this.curPage.get());
+      //this.paginationService.setCurrentPage(this.paginationService.defaultId, this.curPage.get());
 
       this.subscribe('parties', options, this.location.get(), () => {
-        this.parties = Redirects.find({}, {sort: { name: this.nameOrder.get() }});
+        let sortCfg = {};
+        sortCfg[this.sortBy.get()] = this.sortOrder.get();
+        this.parties = Redirects.find({}, {sort: sortCfg } );
         this.loading = false;
+        console.warn("sub end");
       }, true);
     });
 
     this.autorun(() => {
       this.partiesSize = Counts.get('numberOfParties');
-      this.paginationService.setTotalItems(this.paginationService.defaultId, this.partiesSize);
+      //this.paginationService.setTotalItems(this.paginationService.defaultId, this.partiesSize);
     });
   }
 
@@ -75,17 +86,27 @@ export class RedirectListComponent extends MeteorComponent implements OnInit {
 
   search(value: string) {
     console.warn("searching on "+value);
-    this.curPage.set(1);
-    this.location.set(value);
+    //this.curPage.set(1);
+    this.location.set(value.trim());
   }
 
-  changeSortOrder(nameOrder: string) {
-    this.nameOrder.set(parseInt(nameOrder));
+  // changeSortOrder(nameOrder: string) {
+    //this.nameOrder.set(parseInt(nameOrder));
+    //this.nameOrder.set(nameOrder);
+  // }
+
+  changeSortBy(sb: string){
+    console.warn('fired sb');
+    this.sortBy.set(sb);
+  }
+  changeSortOrder(so: string){
+    console.warn('fired so');
+    this.sortOrder.set(parseInt(so));
   }
 
-  onPageChanged(page: number) {
-    this.curPage.set(page);
-  }
+  // onPageChanged(page: number) {
+  //   this.curPage.set(page);
+  // }
 
   isOwner(party: Redirect): boolean {
     return this.user && this.user._id === party.owner;

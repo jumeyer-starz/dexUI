@@ -17,12 +17,19 @@
         /<input [disabled]="!isOwner" type="text" [(ngModel)]="party.redirect" name="redirect" class="form-control">
         </div>
 
-        <!--<div class="checkbox">-->
-            <!--<label>-->
-                <!--<input type="checkbox" formControlName="testEnabled">-->
-                <!--Public-->
-            <!--</label>-->
-        <!--</div>-->
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" _formControlName="testEnabled" checked>
+                Test
+            </label>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" _formControlName="prodEnabled" checked>
+                Production
+            </label>
+        </div>
 
 
         <div class="form-group">
