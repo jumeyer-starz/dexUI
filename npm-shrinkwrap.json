@@ -1,55 +1,75 @@
 {
-  "name": "angular2-meteor-base",
+  "name": "dextrose-base",
   "dependencies": {
     "@angular/common": {
-      "version": "2.0.0-rc.4",
-      "from": "@angular/common@2.0.0-rc.4",
-      "resolved": "https://registry.npmjs.org/@angular/common/-/common-2.0.0-rc.4.tgz"
+      "version": "2.0.1",
+      "from": "@angular/common@2.0.1",
+      "resolved": "https://registry.npmjs.org/@angular/common/-/common-2.0.1.tgz"
     },
     "@angular/compiler": {
-      "version": "2.0.0-rc.4",
-      "from": "@angular/compiler@2.0.0-rc.4",
-      "resolved": "https://registry.npmjs.org/@angular/compiler/-/compiler-2.0.0-rc.4.tgz"
+      "version": "2.0.1",
+      "from": "@angular/compiler@2.0.1",
+      "resolved": "https://registry.npmjs.org/@angular/compiler/-/compiler-2.0.1.tgz"
     },
     "@angular/core": {
-      "version": "2.0.0-rc.4",
-      "from": "@angular/core@2.0.0-rc.4",
-      "resolved": "https://registry.npmjs.org/@angular/core/-/core-2.0.0-rc.4.tgz"
+      "version": "2.0.1",
+      "from": "@angular/core@2.0.1",
+      "resolved": "https://registry.npmjs.org/@angular/core/-/core-2.0.1.tgz"
     },
     "@angular/forms": {
-      "version": "0.2.0",
-      "from": "@angular/forms@0.2.0",
-      "resolved": "https://registry.npmjs.org/@angular/forms/-/forms-0.2.0.tgz"
+      "version": "2.0.1",
+      "from": "@angular/forms@2.0.1",
+      "resolved": "https://registry.npmjs.org/@angular/forms/-/forms-2.0.1.tgz"
     },
     "@angular/platform-browser": {
-      "version": "2.0.0-rc.4",
-      "from": "@angular/platform-browser@2.0.0-rc.4",
-      "resolved": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-2.0.0-rc.4.tgz"
+      "version": "2.0.1",
+      "from": "@angular/platform-browser@2.0.1",
+      "resolved": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-2.0.1.tgz"
     },
     "@angular/platform-browser-dynamic": {
-      "version": "2.0.0-rc.4",
-      "from": "@angular/platform-browser-dynamic@2.0.0-rc.4",
-      "resolved": "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.0.0-rc.4.tgz"
+      "version": "2.0.1",
+      "from": "@angular/platform-browser-dynamic@2.0.1",
+      "resolved": "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.0.1.tgz"
     },
     "@angular/router": {
-      "version": "3.0.0-alpha.8",
-      "from": "@angular/router@3.0.0-alpha.8",
-      "resolved": "https://registry.npmjs.org/@angular/router/-/router-3.0.0-alpha.8.tgz"
+      "version": "3.0.1",
+      "from": "@angular/router@3.0.1",
+      "resolved": "https://registry.npmjs.org/@angular/router/-/router-3.0.1.tgz"
+    },
+    "@angular2-material/button": {
+      "version": "2.0.0-alpha.8-2",
+      "from": "@angular2-material/button@latest",
+      "resolved": "https://registry.npmjs.org/@angular2-material/button/-/button-2.0.0-alpha.8-2.tgz"
+    },
+    "@angular2-material/card": {
+      "version": "2.0.0-alpha.8-2",
+      "from": "@angular2-material/card@latest",
+      "resolved": "https://registry.npmjs.org/@angular2-material/card/-/card-2.0.0-alpha.8-2.tgz"
+    },
+    "@angular2-material/checkbox": {
+      "version": "2.0.0-alpha.8-2",
+      "from": "@angular2-material/checkbox@latest",
+      "resolved": "https://registry.npmjs.org/@angular2-material/checkbox/-/checkbox-2.0.0-alpha.8-2.tgz"
+    },
+    "@angular2-material/core": {
+      "version": "2.0.0-alpha.8-2",
+      "from": "@angular2-material/core@latest",
+      "resolved": "https://registry.npmjs.org/@angular2-material/core/-/core-2.0.0-alpha.8-2.tgz"
+    },
+    "@angular2-material/input": {
+      "version": "2.0.0-alpha.8-2",
+      "from": "@angular2-material/input@latest",
+      "resolved": "https://registry.npmjs.org/@angular2-material/input/-/input-2.0.0-alpha.8-2.tgz"
+    },
+    "@angular2-material/toolbar": {
+      "version": "2.0.0-alpha.8-2",
+      "from": "@angular2-material/toolbar@latest",
+      "resolved": "https://registry.npmjs.org/@angular2-material/toolbar/-/toolbar-2.0.0-alpha.8-2.tgz"
     },
     "angular2-meteor": {
-      "version": "0.6.2",
-      "from": "angular2-meteor@0.6.2",
-      "resolved": "https://registry.npmjs.org/angular2-meteor/-/angular2-meteor-0.6.2.tgz"
-    },
-    "angular2-meteor-accounts-ui": {
-      "version": "0.6.1",
-      "from": "angular2-meteor-accounts-ui@latest",
-      "resolved": "https://registry.npmjs.org/angular2-meteor-accounts-ui/-/angular2-meteor-accounts-ui-0.6.1.tgz"
-    },
-    "angular2-meteor-auto-bootstrap": {
-      "version": "0.6.0",
-      "from": "angular2-meteor-auto-bootstrap@0.6.0",
-      "resolved": "https://registry.npmjs.org/angular2-meteor-auto-bootstrap/-/angular2-meteor-auto-bootstrap-0.6.0.tgz"
+      "version": "0.7.0",
+      "from": "angular2-meteor@0.7.0",
+      "resolved": "https://registry.npmjs.org/angular2-meteor/-/angular2-meteor-0.7.0.tgz"
     },
     "angular2-meteor-polyfills": {
       "version": "0.1.1",
@@ -61,27 +81,30 @@
       "from": "angular2-meteor-tests-polyfills@0.0.2",
       "resolved": "https://registry.npmjs.org/angular2-meteor-tests-polyfills/-/angular2-meteor-tests-polyfills-0.0.2.tgz"
     },
-    "assertion-error": {
-      "version": "1.0.2",
-      "from": "assertion-error@>=1.0.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/assertion-error/-/assertion-error-1.0.2.tgz"
+    "bcrypt": {
+      "version": "0.8.7",
+      "from": "bcrypt@0.8.7",
+      "resolved": "https://registry.npmjs.org/bcrypt/-/bcrypt-0.8.7.tgz"
     },
-    "deep-eql": {
-      "version": "0.1.3",
-      "from": "deep-eql@>=0.1.3 <0.2.0",
-      "resolved": "https://registry.npmjs.org/deep-eql/-/deep-eql-0.1.3.tgz",
-      "dependencies": {
-        "type-detect": {
-          "version": "0.1.1",
-          "from": "type-detect@0.1.1",
-          "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-0.1.1.tgz"
-        }
-      }
+    "bindings": {
+      "version": "1.2.1",
+      "from": "bindings@1.2.1",
+      "resolved": "https://registry.npmjs.org/bindings/-/bindings-1.2.1.tgz"
+    },
+    "consul": {
+      "version": "0.25.0",
+      "from": "consul@0.25.0",
+      "resolved": "https://registry.npmjs.org/consul/-/consul-0.25.0.tgz"
     },
     "es6-shim": {
       "version": "0.35.1",
       "from": "es6-shim@0.35.1",
       "resolved": "https://registry.npmjs.org/es6-shim/-/es6-shim-0.35.1.tgz"
+    },
+    "lodash": {
+      "version": "4.16.2",
+      "from": "lodash@>=4.14.0 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.16.2.tgz"
     },
     "meteor-node-stubs": {
       "version": "0.2.3",
@@ -591,30 +614,45 @@
         }
       }
     },
+    "meteor-rxjs": {
+      "version": "0.2.3",
+      "from": "meteor-rxjs@0.2.3",
+      "resolved": "https://registry.npmjs.org/meteor-rxjs/-/meteor-rxjs-0.2.3.tgz"
+    },
+    "nan": {
+      "version": "2.3.5",
+      "from": "nan@2.3.5",
+      "resolved": "https://registry.npmjs.org/nan/-/nan-2.3.5.tgz"
+    },
     "ng2-pagination": {
       "version": "0.3.5",
-      "from": "ng2-pagination@latest",
+      "from": "https://registry.npmjs.org/ng2-pagination/-/ng2-pagination-0.3.5.tgz",
       "resolved": "https://registry.npmjs.org/ng2-pagination/-/ng2-pagination-0.3.5.tgz"
     },
+    "papi": {
+      "version": "0.25.1",
+      "from": "papi@>=0.25.0 <0.26.0",
+      "resolved": "https://registry.npmjs.org/papi/-/papi-0.25.1.tgz"
+    },
     "reflect-metadata": {
-      "version": "0.1.3",
-      "from": "reflect-metadata@0.1.3",
-      "resolved": "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.1.3.tgz"
+      "version": "0.1.8",
+      "from": "reflect-metadata@0.1.8",
+      "resolved": "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.1.8.tgz"
     },
     "rxjs": {
-      "version": "5.0.0-beta.6",
-      "from": "rxjs@5.0.0-beta.6",
-      "resolved": "https://registry.npmjs.org/rxjs/-/rxjs-5.0.0-beta.6.tgz"
+      "version": "5.0.0-beta.12",
+      "from": "rxjs@5.0.0-beta.12",
+      "resolved": "https://registry.npmjs.org/rxjs/-/rxjs-5.0.0-beta.12.tgz"
     },
-    "type-detect": {
-      "version": "1.0.0",
-      "from": "type-detect@>=1.0.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-1.0.0.tgz"
+    "symbol-observable": {
+      "version": "1.0.2",
+      "from": "symbol-observable@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.0.2.tgz"
     },
     "zone.js": {
-      "version": "0.6.12",
-      "from": "zone.js@0.6.12",
-      "resolved": "https://registry.npmjs.org/zone.js/-/zone.js-0.6.12.tgz"
+      "version": "0.6.25",
+      "from": "zone.js@0.6.25",
+      "resolved": "https://registry.npmjs.org/zone.js/-/zone.js-0.6.25.tgz"
     }
   }
 }

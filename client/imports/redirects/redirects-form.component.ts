@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { REACTIVE_FORM_DIRECTIVES, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Meteor } from 'meteor/meteor';
 
 import { Redirects } from '../../../both/collections/redirect.collection';
@@ -10,7 +10,7 @@ import template from './redirects-form.component.html';
 @Component({
   selector: 'redirects-form',
   template,
-  directives: [REACTIVE_FORM_DIRECTIVES]
+  //directives: [REACTIVE_FORM_DIRECTIVES]
 })
 export class RedirectFormComponent implements OnInit {
   addForm: FormGroup;

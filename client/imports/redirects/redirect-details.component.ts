@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Tracker } from 'meteor/tracker';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
@@ -19,8 +19,8 @@ import template from './redirect-details.component.html';
 @Component({
   selector: 'party-details',
   template,
-  directives: [ROUTER_DIRECTIVES],
-  pipes: [DisplayNamePipe]
+  //directives: [ROUTER_DIRECTIVES],
+  //pipes: [DisplayNamePipe]
 })
 @InjectUser('user')
 export class RedirectDetailsComponent extends MeteorComponent implements OnInit {
@@ -35,22 +35,22 @@ export class RedirectDetailsComponent extends MeteorComponent implements OnInit 
   }
 
   ngOnInit() {
-    this.route.params
-      .map(params => params['partyId'])
-      .subscribe(partyId => {
-        this.partyId = partyId;
-
-        this.subscribe('party', this.partyId, () => {
-          this.autorun(() => {
-            this.party = Redirects.findOne(this.partyId);
-            this.getUsers(this.party);
-          }, true);
-        }, true);
-
-        this.subscribe('uninvited', this.partyId, () => {
-          this.getUsers(this.party);
-        }, true);
-      });
+    // this.route.params
+    //   .map(params => params['partyId'])
+    //   .subscribe(partyId => {
+    //     this.partyId = partyId;
+    //
+    //     this.subscribe('party', this.partyId, () => {
+    //       this.autorun(() => {
+    //         this.party = Redirects.findOne(this.partyId);
+    //         this.getUsers(this.party);
+    //       }, true);
+    //     }, true);
+    //
+    //     this.subscribe('uninvited', this.partyId, () => {
+    //       this.getUsers(this.party);
+    //     }, true);
+    //   });
   }
 
   saveParty() {

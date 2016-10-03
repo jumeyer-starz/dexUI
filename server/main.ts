@@ -48,13 +48,18 @@ Meteor.methods({
 
 });
 
-
+// LDAP_DEFAULTS.url = 'ldap://playstation.encore.corp.root';
+// LDAP_DEFAULTS.dn = 'CN=PLAYSTATION,CN=Servers,CN=ENCORE,CN=Sites,CN=Configuration,DC=corp,DC=root';
+// LDAP_DEFAULTS.port = 389;
+// LDAP_DEFAULTS.createNewUser = true;
 
 
 Meteor.startup(() => {
+
+
+
   // load initial Redirects
   loadRedirects();
-
 
   console.warn("i'm a server");
   consul_test = consul({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+//import { ROUTER_DIRECTIVES } from '@angular/router';
 import { Mongo } from 'meteor/mongo';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Counts } from 'meteor/tmeasday:publish-counts';
@@ -19,8 +19,8 @@ import template from './redirects-list.component.html';
   selector: 'parties-list',
   template,
   //viewProviders: [PaginationService],
-  directives: [RedirectFormComponent, ROUTER_DIRECTIVES],
-  pipes: [RsvpPipe]
+  //directives: [RedirectFormComponent, ROUTER_DIRECTIVES],
+  //pipes: [RsvpPipe]
 })
 @InjectUser('user')
 export class RedirectListComponent extends MeteorComponent implements OnInit {

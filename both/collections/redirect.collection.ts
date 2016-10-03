@@ -1,5 +1,4 @@
 import {Mongo} from 'meteor/mongo';
-
 import {Redirect} from '../interfaces/redirect.interface';
 
 export const Redirects = new Mongo.Collection<Redirect>('parties');
