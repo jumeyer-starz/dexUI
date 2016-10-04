@@ -58,7 +58,7 @@ export class RedirectDetailsComponent extends MeteorComponent implements OnInit 
       Redirects.update(this.party._id, {
         $set: {
           name: this.party.name,
-          description: this.party.description,
+          description: this.party.path,
           redirect: this.party.redirect
         }
       });

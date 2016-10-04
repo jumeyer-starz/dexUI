@@ -2,7 +2,6 @@ import {loadRedirects} from './imports/fixtures/redirects';
 import {Meteor} from 'meteor/meteor';
 //import consul from 'consul';
 
-
 declare var require:(moduleId:string) => any;
 var consul = require("consul");
 
@@ -82,9 +81,13 @@ Meteor.startup(() => {
   });
   test_wtch.on('change', function (data,msg) {
     console.log('\ntest data change:', data);
+
+    //data.forEach((r) => Redirects.insert({name:r.Key, path:r.Value, redirect:r.Value}));
   });
   prod_wtch.on('change', function (data,msg) {
     console.log('\nprod data change:', data);
+
+    //data.forEach((r) => Redirects.insert({name:r.Key, path:r.Value, redirect:r.Value}));
   });
 
 
@@ -102,7 +105,8 @@ Meteor.startup(() => {
     //       // for (var i = 0; i < data.length; i++) {
     //       //   exports.Messages.insert({
     //       //     name: data[i].Value,
-    //       //     message: data[i].Key,
+    //       //     path: data[i].Key,
+    //       //     reidrect:data[i].Value,
     //       //     time: Date.now()
     //       //   });
     //       // }

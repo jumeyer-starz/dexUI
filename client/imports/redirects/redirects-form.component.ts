@@ -29,7 +29,7 @@ export class RedirectFormComponent implements OnInit {
   resetForm() {
     console.warn("resetting form");
     // this.addForm.controls['name']['updateValue']('');
-    // this.addForm.controls['description']['updateValue']('');
+    // this.addForm.controls['path']['updateValue']('');
     // this.addForm.controls['location']['updateValue']('');
     // this.addForm.controls['testEnabled']['updateValue'](false);
   }
@@ -39,7 +39,7 @@ export class RedirectFormComponent implements OnInit {
       if (Meteor.userId()) {
         let newRd:any  = {
           name: this.addForm.value.name,
-          description: this.addForm.value.description,
+          description: this.addForm.value.path,
           redirect: this.addForm.value.redirect,
 
           testEnabled: this.addForm.value.testEnabled,

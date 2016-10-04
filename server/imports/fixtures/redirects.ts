@@ -3,18 +3,15 @@ import { Redirect } from '../../../both/interfaces/redirect.interface';
 
 export function loadRedirects() {
   if (Redirects.find().count() === 0) {
-    const parties: Redirect[] = [
+    const redirects: Redirect[] = [
       {
         name: 'place',
-        description: 'holder',
+        path: 'holder',
         redirect:'http://dude.com'
-        // location: {
-        //   name: 'test'
-        // },
-        //testEnabled: true
       }
     ];
 
-    parties.forEach((party) => Redirects.insert(party));
+    redirects.forEach((r) => Redirects.insert(r));
   }
 }
+
