@@ -8,8 +8,12 @@ var consul = require("consul");
 import './imports/publications/redirect';
 import './imports/publications/users';
 import '../both/methods/redirect.methods.ts';
+
 import {Redirects} from "../both/collections/redirect.collection";
 import {Redirect} from "../both/interfaces/redirect.interface";
+
+import {MeteorAppRegistry} from "angular2-meteor";
+
 
 var consul_test:any;
 var consul_prod:any;
@@ -24,6 +28,9 @@ Meteor.methods({
       var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
       return v.toString(16);
     });
+  },
+  fiberTest:function():string{
+    return "wahtever"
   },
   pushToConsul:function(newRd: Redirect){
     console.warn("pushed:" + newRd.name);
@@ -54,13 +61,12 @@ Meteor.startup(() => {
   // load initial Redirects
   loadRedirects();
 
-
   console.warn("i'm a server");
-  consul_test = consul({
+  let consul_test = consul({
     host: "52.90.160.92",
     port: 80
   });
-  consul_prod = consul({
+  let consul_prod = consul({
     host: "54.164.47.24",
     port: 80
   });
@@ -79,17 +85,47 @@ Meteor.startup(() => {
       recurse: true
     }
   });
-  test_wtch.on('change', function (data,msg) {
-    console.log('\ntest data change:', data);
+  // test_wtch.on('change', function (data,msg) {
+  //   console.log('\ntest data change:', data);
+  //   //fiber this
+  //   //data.forEach((r) => Redirects.insert({name:r.Key, path:r.Value, redirect:r.Value}));
+  //
+  //
+  //     // for (var i = 0; i < data.length; i++) {
+  //     //   let r = new Redirect();
+  //     //   r.name = data[i].Value;
+  //     //   r.path = data[i].Key;
+  //     //   r.redirect = data[i].Value;
+  //     //   r.time = Date.now();
+  //     //   Redirects.insert(r);
+  //     // }
+  //
+  // });
 
-    //data.forEach((r) => Redirects.insert({name:r.Key, path:r.Value, redirect:r.Value}));
-  });
+
+
   prod_wtch.on('change', function (data,msg) {
     console.log('\nprod data change:', data);
-
+    //fiber this
     //data.forEach((r) => Redirects.insert({name:r.Key, path:r.Value, redirect:r.Value}));
+    Meteor.wrapAsync(function(err){
+      console.warn("prod change");
+    });
   });
 
+
+
+
+    // Redirects.remove({});
+    // for (var i = 0; i < data.length; i++) {
+    //   let r = new Redirect();
+    //   r.name =  data[i].Value;
+    //   r.path = data[i].Key;
+    //   r.redirect = data[i].Value;
+    //   r.time = Date.now();
+    //
+    //   Redirects.insert(r);
+    // }
 
 
   // var boundInsert = Meteor.bindEnvironment( Redirects, function(err) {
@@ -106,7 +142,7 @@ Meteor.startup(() => {
     //       //   exports.Messages.insert({
     //       //     name: data[i].Value,
     //       //     path: data[i].Key,
-    //       //     reidrect:data[i].Value,
+    //       //     redirect:data[i].Value,
     //       //     time: Date.now()
     //       //   });
     //       // }
@@ -116,6 +152,26 @@ Meteor.startup(() => {
     // );
   // });
   // boundInsert();
+
+
+
+
+    // test_wtch.on('change', Meteor.wrapAsync(function (data,msg) {     //function (data, msg) {
+    //     console.log('\ndata:', data);
+    //
+    //     Redirects.remove({});
+    //     for (var i = 0; i < data.length; i++) {
+    //       let r = new Redirect();
+    //       r.name =  data[i].Value;
+    //       r.path = data[i].Key;
+    //       r.redirect = data[i].Value;
+    //       r.time = Date.now();
+    //
+    //       Redirects.insert(r);
+    //     }
+    //
+    //   })
+    // )//.on
 
 
 });

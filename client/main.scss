@@ -22,6 +22,11 @@ body {
   font-family: 'Muli', sans-serif;
 }
 
+//fix the login box position for use with login-buttons
+login-buttons.pull-right div.login-buttons div.content-container{
+  left:-230px;
+}
+
 .sebm-google-map-container {
   width: 450px;
   height: 450px;
